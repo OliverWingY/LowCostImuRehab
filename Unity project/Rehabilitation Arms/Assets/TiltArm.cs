@@ -12,7 +12,7 @@ public class TiltArm : MonoBehaviour
     public KeyCode TiltBycepAntiClockwise;
     private Vector3 clockwiseVector = new Vector3(0, 0, 1);
     private Vector3 anitclockwiseVector = new Vector3(0, 0, -1);
-    public KeyCod  e TwistBycepClockwise;
+    public KeyCode TwistBycepClockwise;
     public KeyCode TwistBycepAntiClockwise;
     private Vector3 twistClockwiseVector = new Vector3(0, 1, 0);
     private Vector3 twistAnitClockwiseVector = new Vector3(0, -1, 0);
