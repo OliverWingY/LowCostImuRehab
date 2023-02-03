@@ -59,6 +59,9 @@
     <Compile Include="Assets\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
   </ItemGroup> -->
   <ItemGroup>
+	<Reference Include="UDPTinkering">
+	  <HintPath>D:\Repos\LowCostImuRehab\Unity project\UDPTinkering\bin\Debug\net5.0\UDPTinkering.dll</HintPath>
+	</Reference>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity 2021.3.14f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
