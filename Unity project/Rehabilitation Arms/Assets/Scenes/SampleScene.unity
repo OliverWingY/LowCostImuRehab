@@ -380,7 +380,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 40f54fdad67463149b9459d6c126961c, type: 2}
+  - {fileID: 2100000, guid: de31610e9b1b0a44aadf86a22ee049d0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2017,7 +2017,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4835078630258379571, guid: 85653a2e4aa30f84fa31a53f4dc14ee8, type: 3}
+  - {fileID: 4835078630258379571, guid: b040176a23219d84281eae9fe4f2a4ff, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2042,7 +2042,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4753420535827387162, guid: 85653a2e4aa30f84fa31a53f4dc14ee8, type: 3}
+  m_Mesh: {fileID: 4753420535827387162, guid: b040176a23219d84281eae9fe4f2a4ff, type: 3}
   m_Bones:
   - {fileID: 6195784100386757590}
   - {fileID: 7712889460811075110}
@@ -3996,7 +3996,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5582070892105593703}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de8f6a7e3bed89a4fa5aa9ccdf4178c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 25e63b469e99718479e3a9f9a5f0974d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TiltBycepUp: 119
@@ -4350,15 +4350,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8534375760095388020}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de8f6a7e3bed89a4fa5aa9ccdf4178c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 25e63b469e99718479e3a9f9a5f0974d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TiltBycepUp: 105
   TiltBycepDown: 107
-  TiltBycepClockwise: 0
-  TiltBycepAntiClockwise: 0
-  TwistBycepClockwise: 0
-  TwistBycepAntiClockwise: 0
+  TiltBycepClockwise: 108
+  TiltBycepAntiClockwise: 106
+  TwistBycepClockwise: 111
+  TwistBycepAntiClockwise: 117
   Reset: 32
 --- !u!65 &8534375760095388022
 BoxCollider:
