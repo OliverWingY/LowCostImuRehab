@@ -20,4 +20,9 @@ public class Startup : MonoBehaviour
     {
         CurrentPosition = PortListener.currentAngles;
     }
+
+    private void OnDisable()
+    {
+        PortListener.Close();
+    }
 }

@@ -13,6 +13,6 @@ public class PlayRecordingBicep : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Transform>().eulerAngles = new Vector3((float)Startup.CurrentPosition[1], (float)Startup.CurrentPosition[2], (float)Startup.CurrentPosition[3]);
+        GetComponent<Transform>().localEulerAngles = new Vector3((float)Startup.CurrentPosition[0], (float)Startup.CurrentPosition[1], (float)Startup.CurrentPosition[2]);
     }
 }

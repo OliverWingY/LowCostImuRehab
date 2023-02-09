@@ -58,10 +58,10 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\LightUp.cs" />
     <Compile Include="Assets\Scripts\TiltArm.cs" />
+    <Compile Include="Assets\Scripts\PlayRecordingBicep.cs" />
+    <Compile Include="Assets\Scripts\PlayRecordingForearm.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Startup.cs" />
-    <Compile Include="Assets\Scripts\PlayRecordingForearm.cs" />
-    <Compile Include="Assets\Scripts\PlayRecordingBicep.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Assemblies\UDPTinkering.dll" />

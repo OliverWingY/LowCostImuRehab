@@ -9,8 +9,10 @@ namespace UDPSending
     {
         private static int portNumber = 17628;
         private static Socket sock;
+        
         public static void Main()
         {
+            running= true;
             AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
             Console.WriteLine("Starting");
             var remoteEP = new IPEndPoint(IPAddress.Parse("127.0.0.1"), portNumber);
@@ -20,6 +22,7 @@ namespace UDPSending
             Console.WriteLine("Succesfully read full dataset");
             
             byte[] data = new byte[48];
+            //todo: replace this with a task that can be cancelled
             while (true)
             {
                 Console.WriteLine($"Starting loop at {DateTime.Now}");
@@ -48,7 +51,7 @@ namespace UDPSending
 
         private static double[][] ReadInMovement()
         {
-            var filePath = @"D:\Repos\LowCostImuRehab\Unity project\UDPSending\DataToSendJustNumbers2.csv";
+            var filePath = $"{AppDomain.CurrentDomain.BaseDirectory}\\DataToSendJustNumbers2.csv";
             string[][] stringData = File.ReadLines(filePath).Select(x => x.Split(',')).ToArray();
             double[][] data = new double[stringData.Length][];
             var i = 0;

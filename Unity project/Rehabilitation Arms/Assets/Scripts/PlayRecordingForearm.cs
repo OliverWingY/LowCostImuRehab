@@ -14,6 +14,7 @@ public class PlayRecordingForearm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Transform>().eulerAngles = new Vector3((float)Startup.CurrentPosition[4], (float)Startup.CurrentPosition[5], (float)Startup.CurrentPosition[6]);
+        GetComponent<Transform>().localEulerAngles = new Vector3((float)Startup.CurrentPosition[3], (float)Startup.CurrentPosition[4], (float)Startup.CurrentPosition[5]);
+
     }
 }
