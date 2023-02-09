@@ -7,7 +7,8 @@ namespace UDPTinkering
 {
     public class PortListener 
     {
-        private UdpClient udpServer;
+        private static int portNumber = 17628;
+        private static UdpClient udpServer;
         public double[] currentAngles = new double[6];
         public PortListener(int portNumber)
         {
@@ -17,6 +18,7 @@ namespace UDPTinkering
 
         private async void StartListening(int portNumber)
         {
+            AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
             await Task.Run(() =>
             {
                 while (true)
@@ -28,8 +30,7 @@ namespace UDPTinkering
                         currentAngles = DecodeUDPMessage(data);
                     }
                 }
-            });
-            
+            });            
         }
         
         //converts array of 48 bytes into an array of 6 doubles
@@ -42,6 +43,9 @@ namespace UDPTinkering
             }
             return doubleArray;
         }
-
+        private static void CurrentDomain_ProcessExit(object sender, EventArgs e)
+        {
+            udpServer.Close();
+        }
     }
 }

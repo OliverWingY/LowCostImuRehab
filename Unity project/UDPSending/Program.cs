@@ -13,14 +13,23 @@ namespace UDPSending
         {
             AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
             Console.WriteLine("Starting");
-            var remoteEP = new IPEndPoint(IPAddress.Parse("10.41.39.105"), portNumber);
+            var remoteEP = new IPEndPoint(IPAddress.Parse("127.0.0.1"), portNumber);
             sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram,ProtocolType.Udp);
+
+            var fullDataset = ReadInMovement();
+            Console.WriteLine("Succesfully read full dataset");
+            
+            byte[] data = new byte[48];
             while (true)
-            {                
-                string readLine = Console.ReadLine();
-                var data = ASCIIEncoding.ASCII.GetBytes(readLine);
-                sock.SendTo(data, remoteEP);
-                Console.WriteLine("sent!");
+            {
+                Console.WriteLine($"Starting loop at {DateTime.Now}");
+                for(int i = 0; i<fullDataset.Length; i++)
+                {                    
+                    data = GetBytes(fullDataset[i]);
+                    sock.SendTo(data, remoteEP);
+                    Thread.Sleep(1);
+                }
+                
             }
             
         }
@@ -30,6 +39,25 @@ namespace UDPSending
             sock.Close();
             Console.WriteLine("press any key to exit");
             Console.ReadKey();
+        }
+
+        private static byte[] GetBytes(double[] values)
+        {
+            return values.SelectMany(value => BitConverter.GetBytes(value)).ToArray();
+        }
+
+        private static double[][] ReadInMovement()
+        {
+            var filePath = @"D:\Repos\LowCostImuRehab\Unity project\UDPSending\DataToSendJustNumbers2.csv";
+            string[][] stringData = File.ReadLines(filePath).Select(x => x.Split(',')).ToArray();
+            double[][] data = new double[stringData.Length][];
+            var i = 0;
+            foreach (string[] stringRow in stringData)
+            {
+                data[i] = Array.ConvertAll(stringRow, Double.Parse);
+                i++;
+            }
+            return data;
         }
     }
 }
