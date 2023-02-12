@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace Middleware
     internal class MatlabRunner :IDisposable
     {
         private MLApp.MLApp Matlab;
-        private string MatlabScriptsFolder = Path.GetFullPath(Path.Join(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\"), "\\MatlabScripts"));
+        private string MatlabScriptsFolder = Path.GetFullPath(Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\"), "\\MatlabScripts"));
         private string initialiseName = "InitialiseMatlabWorkspace";
         public MatlabRunner() 
         {
@@ -24,7 +25,7 @@ namespace Middleware
             return (bool)((object[])MatlabInitialisationSuccessful)[0];
         }
 
-        //For every matlab script you want a different one of these
+        //For every matlab script you want a different function that will look something like this:
         public double RunExampleFunction(double input1, double input2)
         {            
             var numberOfInputs = 2;

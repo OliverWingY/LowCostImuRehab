@@ -15,17 +15,16 @@ namespace Middleware
         private static CancellationTokenSource imuListenCancellation;
 
         //variables for sending data to unity
-        private static Socket unitySocket;
-        private static IPEndPoint unityEndPoint;
+
+        private UnityMonitoredVariables unityMonitoredVariables;
 
         //variables for creating metadata
         private static MatlabRunner matlabRunner;
         public static double[][] RecordedMotion = new double[80000][]; //8 second of xyz acceleration and angle
 
-        public Middleware(int imuPortNumber, int unityPortNumber) 
+        public Middleware(int imuPortNumber, int unityPortNumber, UnityMonitoredVariables UnityMonitoredVariables) 
         {
-            unityEndPoint  = new IPEndPoint(IPAddress.Parse("127.0.0.1"), unityPortNumber);
-            unitySocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            unityMonitoredVariables= UnityMonitoredVariables;
 
             matlabRunner = new MatlabRunner();
 
@@ -42,7 +41,7 @@ namespace Middleware
             Dispose();
         }
 
-        private static Task StartListening(int portNumber, CancellationToken cancellationToken)
+        private Task StartListening(int portNumber, CancellationToken cancellationToken)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -56,7 +55,7 @@ namespace Middleware
                     var decodedData = DecodeImuData(imuData);
 
                     RecordedMotion[i] = decodedData; 
-                    Task.Run(() => ProcessAndSendUnityData(decodedData));
+                    Task.Run(() => unityMonitoredVariables.Update(decodedData));
 
                     if (i == 80000)
                     {         
@@ -77,24 +76,7 @@ namespace Middleware
         private static double[] DecodeImuData(byte[] data)
         {
             throw new NotImplementedException();
-        }
-
-        //functions for dealing with unity
-        private static void ProcessAndSendUnityData(double[] decodedData)
-        {
-            var processedData = ProcessDataForUnity(decodedData);
-            var dataToSend = GetBytes(processedData);
-            unitySocket.SendTo(dataToSend, unityEndPoint);
-        }
-        private static double[] ProcessDataForUnity(double[] data)
-        {
-            throw new NotImplementedException();
-        }        
-
-        private static byte[] GetBytes(double[] values)
-        {
-            return values.SelectMany(value => BitConverter.GetBytes(value)).ToArray();
-        }
+        }      
 
         //functions for dealing with matlab and database
         private static object GetMetaDataWithMatlab(double[][] data)
