@@ -115,11 +115,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Services.Core.Configu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Communication", "Communication", "{A8478458-E8BD-4ED4-A64B-65D8DB842126}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDPTinkering", "..\UDPTinkering\UDPTinkering.csproj", "{B44ED720-2DA2-422B-8A56-E8FF754EE9ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityListener", "..\UDPTinkering\UnityListener.csproj", "{B44ED720-2DA2-422B-8A56-E8FF754EE9ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDPSending", "..\UDPSending\UDPSending.csproj", "{1790A484-BDF0-40CA-BB96-EB7B1835D9EF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDPRecieving", "..\UDPRecieving\UDPRecieving.csproj", "{8A2261AE-20E0-43E7-A023-BD3E25FDD592}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UDPSending", "..\UDPSending\UDPSending.csproj", "{1790A484-BDF0-40CA-BB96-EB7B1835D9EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -359,10 +357,6 @@ Global
 		{1790A484-BDF0-40CA-BB96-EB7B1835D9EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1790A484-BDF0-40CA-BB96-EB7B1835D9EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1790A484-BDF0-40CA-BB96-EB7B1835D9EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8A2261AE-20E0-43E7-A023-BD3E25FDD592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A2261AE-20E0-43E7-A023-BD3E25FDD592}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A2261AE-20E0-43E7-A023-BD3E25FDD592}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8A2261AE-20E0-43E7-A023-BD3E25FDD592}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -370,6 +364,5 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B44ED720-2DA2-422B-8A56-E8FF754EE9ED} = {A8478458-E8BD-4ED4-A64B-65D8DB842126}
 		{1790A484-BDF0-40CA-BB96-EB7B1835D9EF} = {A8478458-E8BD-4ED4-A64B-65D8DB842126}
-		{8A2261AE-20E0-43E7-A023-BD3E25FDD592} = {A8478458-E8BD-4ED4-A64B-65D8DB842126}
 	EndGlobalSection
 EndGlobal

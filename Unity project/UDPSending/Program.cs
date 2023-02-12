@@ -12,7 +12,6 @@ namespace UDPSending
         
         public static void Main()
         {
-            running= true;
             AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
             Console.WriteLine("Starting");
             var remoteEP = new IPEndPoint(IPAddress.Parse("127.0.0.1"), portNumber);

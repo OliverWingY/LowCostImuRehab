@@ -905,13 +905,13 @@
       <Project>{DA471541-EA2A-1E8C-756A-1535D3573F8C}</Project>
       <Name>Unity.VisualScripting.Flow</Name>
     </ProjectReference>
-    <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{FFF812F6-A194-FC81-F3B2-19B574A1D9D4}</Project>
-      <Name>UnityEngine.UI</Name>
-    </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{2F305CAB-78F2-88E3-D458-DBC4F41D0615}</Project>
       <Name>UnityEditor.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.UI.csproj">
+      <Project>{FFF812F6-A194-FC81-F3B2-19B574A1D9D4}</Project>
+      <Name>UnityEngine.UI</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.TestRunner.csproj">
       <Project>{D2EC0511-7CE0-F769-F93C-A71C0972255B}</Project>
