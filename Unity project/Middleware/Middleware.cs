@@ -22,7 +22,7 @@ namespace Middleware
         private static MatlabRunner matlabRunner;
         public static double[][] RecordedMotion = new double[80000][]; //8 second of xyz acceleration and angle
 
-        public Middleware(int imuPortNumber, int unityPortNumber, UnityMonitoredVariables UnityMonitoredVariables) 
+        public Middleware(int imuPortNumber, UnityMonitoredVariables UnityMonitoredVariables) 
         {
             unityMonitoredVariables= UnityMonitoredVariables;
 
@@ -57,12 +57,12 @@ namespace Middleware
                     RecordedMotion[i] = decodedData; 
                     Task.Run(() => unityMonitoredVariables.Update(decodedData));
 
-                    if (i == 80000)
+                    if (i == 800)
                     {         
                         //this should run asyncrounously so the database stuff can take as long as it needs while the loop continues
                         Task.Run(() =>
                         {
-                            var DBData = GetMetaDataWithMatlab(RecordedMotion);
+                            var DBData = GetMetaData(RecordedMotion);
                             SendMetaDataToDatabase(DBData);
                         });
                         i = 0;
@@ -79,7 +79,7 @@ namespace Middleware
         }      
 
         //functions for dealing with matlab and database
-        private static object GetMetaDataWithMatlab(double[][] data)
+        private static object GetMetaData(double[][] data)
         {
             throw new NotImplementedException();
         }
