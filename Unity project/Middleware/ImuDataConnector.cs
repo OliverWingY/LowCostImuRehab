@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
@@ -7,24 +8,25 @@ using System.Threading.Tasks;
 
 namespace Middleware
 {    
-    public class Middleware : IDisposable
+    public class ImuDataConnector : IDisposable
     {
         //variables for listening to imu data
         private static Task imuListen;
         private static UdpClient imuServer;
-        private static CancellationTokenSource imuListenCancellation;
+        private static CancellationTokenSource imuListenCancellation = new CancellationTokenSource();
 
         //variables for sending data to unity
 
-        private UnityMonitoredVariables unityMonitoredVariables;
+        private UnityMonitoredVariables unityArm;
 
         //variables for creating metadata
         private static MatlabRunner matlabRunner;
-        public static double[][] RecordedMotion = new double[80000][]; //8 second of xyz acceleration and angle
+        public static double[][] RecordedMotion = new double[800][]; //8 second of xyz acceleration and angle
+        public static DateTime[] RecordedTimes = new DateTime[800];
 
-        public Middleware(int imuPortNumber, int unityPortNumber, UnityMonitoredVariables UnityMonitoredVariables) 
+        public ImuDataConnector(int imuPortNumber, UnityMonitoredVariables UnityMonitoredVariables) 
         {
-            unityMonitoredVariables= UnityMonitoredVariables;
+            unityArm= UnityMonitoredVariables;
 
             matlabRunner = new MatlabRunner();
 
@@ -52,18 +54,19 @@ namespace Middleware
                 {                    
                     //the code will stop here and wait for the next imu packet
                     var imuData = imuServer.Receive(ref imuRemoteEP);
+                    RecordedTimes[i] = DateTime.Now;
                     var decodedData = DecodeImuData(imuData);
+                    
+                    RecordedMotion[i] = decodedData;                    
+                    Task.Run(() => UpdateUnity(decodedData));
 
-                    RecordedMotion[i] = decodedData; 
-                    Task.Run(() => unityMonitoredVariables.Update(decodedData));
-
-                    if (i == 80000)
+                    if (i == 800)
                     {         
                         //this should run asyncrounously so the database stuff can take as long as it needs while the loop continues
                         Task.Run(() =>
                         {
-                            var DBData = GetMetaDataWithMatlab(RecordedMotion);
-                            SendMetaDataToDatabase(DBData);
+                            //var DBData = GetMetaData(RecordedMotion);
+                            //SendMetaDataToDatabase(DBData);
                         });
                         i = 0;
                     }
@@ -75,11 +78,24 @@ namespace Middleware
         //functions for dealing with Imu data
         private static double[] DecodeImuData(byte[] data)
         {
-            throw new NotImplementedException();
-        }      
+            //assuming 2 imus, angle + acceleration data
+            var doubleArray = new double[12];
+            for (int i = 0; i < 12; i++)
+            {
+                doubleArray[i] = BitConverter.ToDouble(data, i * 8);
+            }
+            return doubleArray;
+        }     
+        
+        private void UpdateUnity(double[] imuData)
+        {
+            var imuAngles = (double[])imuData.Take(6);
+            unityArm.Angles = imuAngles;
+            var imuAcceleration = (double[])imuData.Skip(6).Take(6);
+        }
 
         //functions for dealing with matlab and database
-        private static object GetMetaDataWithMatlab(double[][] data)
+        private static object GetMetaData(double[][] data)
         {
             throw new NotImplementedException();
         }
@@ -94,7 +110,10 @@ namespace Middleware
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            imuListenCancellation.Cancel();
+            imuListen.Wait();            
+            imuServer.Close();
+            imuServer.Dispose();
         }
     }
 }

@@ -7,37 +7,45 @@ namespace UDPSending
 {
     public class Program
     {
-        private static int portNumber = 17628;
+        private static int portNumber = 17629;
         private static Socket sock;
-        
+        private static CancellationTokenSource cts = new CancellationTokenSource();
+
         public static void Main()
         {
             AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
             Console.WriteLine("Starting");
             var remoteEP = new IPEndPoint(IPAddress.Parse("127.0.0.1"), portNumber);
-            sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram,ProtocolType.Udp);
+            sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
             var fullDataset = ReadInMovement();
             Console.WriteLine("Succesfully read full dataset");
-            
+
             byte[] data = new byte[48];
             //todo: replace this with a task that can be cancelled
-            while (true)
+
+            RunLoop(remoteEP, fullDataset, data).Wait();
+        }
+
+        private static async Task RunLoop(IPEndPoint remoteEP, double[][] fullDataset, byte[] data)
+        {
+            while (!cts.IsCancellationRequested)
             {
                 Console.WriteLine($"Starting loop at {DateTime.Now}");
-                for(int i = 0; i<fullDataset.Length; i++)
-                {                    
+                var timer = Task.Run(()=>Task.Delay(100));
+                for (int i = 0; i < fullDataset.Length; i++)
+                {
                     data = GetBytes(fullDataset[i]);
                     sock.SendTo(data, remoteEP);
-                    Thread.Sleep(1);
                 }
-                
+                await timer;
             }
-            
         }
 
         private static void CurrentDomain_ProcessExit(object? sender, EventArgs e)
         {
+            cts.Cancel();
+            Thread.Sleep(1000);
             sock.Close();
             Console.WriteLine("press any key to exit");
             Console.ReadKey();
