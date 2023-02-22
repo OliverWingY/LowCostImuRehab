@@ -8,13 +8,18 @@ namespace Middleware
 {
     public class UnityMonitoredVariables
     {
-        public double[] Position { get; }
-        public double[] Angles { get; }
-
-        public void Update(double[] imuData)
-        {
-            //in here should be the logic for converting the imu data into the the position and angles for unity to use for the arm model
-            throw new NotImplementedException();
+        public double[] Position 
+        { 
+            get { return position; } 
+            internal set { position = value; }
         }
+        private double[] position;
+        public double[] Angles 
+        { 
+            get { return angles; } 
+            internal set { angles = value; } 
+        }
+        private double[] angles;
+
     }
 }
