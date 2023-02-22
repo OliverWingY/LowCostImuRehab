@@ -337,6 +337,9 @@
     <Reference Include="UDPTinkering">
       <HintPath>Assets\Assemblies\UDPTinkering.dll</HintPath>
     </Reference>
+    <Reference Include="Middleware">
+      <HintPath>Assets\Assemblies\Middleware.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.TextureAssets">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
     </Reference>
