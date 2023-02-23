@@ -13,10 +13,10 @@ namespace Middleware
         private string initialiseName = "InitialiseMatlabWorkspace";
         public MatlabRunner() 
         {
-            string MatlabScriptsFolder = Path.Combine(Directory.GetCurrentDirectory(), "MatlabScripts");
+            //string MatlabScriptsFolder = Path.Combine(Directory.GetCurrentDirectory(), "MatlabScripts");
             Matlab = new MLApp.MLApp();
-            Matlab.Execute($"cd '{MatlabScriptsFolder}'");
-            InitialiseWorkspace();
+            //Matlab.Execute($"cd '{MatlabScriptsFolder}'");
+            //InitialiseWorkspace();
         }
 
         private bool InitialiseWorkspace()

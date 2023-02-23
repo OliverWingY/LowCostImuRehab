@@ -12,9 +12,11 @@ public class Startup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        print("starting up");
         CurrentPosition= new double[6];
         ArmPosition = new UnityMonitoredVariables();
-        Middleware = new ImuDataConnector(17628, ArmPosition);          
+        Middleware = new ImuDataConnector(17628, ArmPosition);   
+        if (Middleware != null) { print("successfully started up middleware"); }
     }
 
     // Update is called once per frame
@@ -23,8 +25,15 @@ public class Startup : MonoBehaviour
         CurrentPosition = ArmPosition.Angles;
     }
 
+    public bool ClassifyMotion(string expectedMotion)
+    {
+        return expectedMotion.Equals(Middleware.ClassifyMotion());
+    }
+
     private void OnDisable()
     {
-        Middleware.Close();
+        print("Closing middleware");
+        Middleware.Dispose();
+        print("Closed middleware");
     }
 }

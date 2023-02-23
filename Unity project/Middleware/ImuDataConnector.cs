@@ -34,13 +34,9 @@ namespace Middleware
             imuListen = StartListening(imuPortNumber, imuListenCancellation.Token);
         }
 
-        public void Close()
+        public string ClassifyMotion()
         {
-            imuListenCancellation.Cancel();
-            imuListen.Wait();
-            matlabRunner.Dispose();
-            UpdateDatabase();
-            Dispose();
+            return "not implemented yet";
         }
 
         private Task StartListening(int portNumber, CancellationToken cancellationToken)
@@ -96,7 +92,7 @@ namespace Middleware
 
         //functions for dealing with matlab and database
         private static object GetMetaData(double[][] data)
-        {
+        {            
             throw new NotImplementedException();
         }
         private static void UpdateDatabase()
@@ -111,7 +107,8 @@ namespace Middleware
         public void Dispose()
         {
             imuListenCancellation.Cancel();
-            imuListen.Wait();            
+            imuListen.Wait();
+            if (matlabRunner != null) matlabRunner.Dispose();        
             imuServer.Close();
             imuServer.Dispose();
         }
