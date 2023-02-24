@@ -1407,7 +1407,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3754466150022511178}
-  - component: {fileID: 3754466150022511179}
   - component: {fileID: 3754466150022511180}
   m_Layer: 0
   m_Name: Forearm.R
@@ -1500,18 +1499,6 @@ Transform:
   m_Father: {fileID: 2918768312654428322}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 14.117, y: 12.266, z: -4.057}
---- !u!114 &3754466150022511179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3441249624833100528}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa2871c85676a1044b168094f4c6e0c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3754466150022511180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1521,16 +1508,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3441249624833100528}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25e63b469e99718479e3a9f9a5f0974d, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c22a833c99ddd844a5f3388cd9755e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TiltBycepUp: 105
-  TiltBycepDown: 107
-  TiltBycepClockwise: 0
-  TiltBycepAntiClockwise: 0
-  TwistBycepClockwise: 0
-  TwistBycepAntiClockwise: 0
-  Reset: 32
 --- !u!1 &3757030515031332849
 GameObject:
   m_ObjectHideFlags: 0
@@ -1686,16 +1666,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4122249166318908131}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25e63b469e99718479e3a9f9a5f0974d, type: 3}
+  m_Script: {fileID: 11500000, guid: a9cecb90a806f784fa9ffdc42625a740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TiltBycepUp: 119
-  TiltBycepDown: 115
-  TiltBycepClockwise: 100
-  TiltBycepAntiClockwise: 97
-  TwistBycepClockwise: 101
-  TwistBycepAntiClockwise: 113
-  Reset: 32
 --- !u!1 &4142780921063574719
 GameObject:
   m_ObjectHideFlags: 0
