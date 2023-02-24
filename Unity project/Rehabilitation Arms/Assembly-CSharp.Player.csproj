@@ -8,8 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{C110BA4D-73BD-13E9-7255-A965B215F0A2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -57,13 +56,19 @@
     <Analyzer Include="D:\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\LightUp.cs" />
+    <Compile Include="Assets\Scripts\TiltArm.cs" />
     <Compile Include="Assets\Scripts\CornPlant.cs" />
+    <Compile Include="Assets\Scripts\PlayRecordingBicep.cs" />
+    <Compile Include="Assets\Scripts\PlayRecordingForearm.cs" />
     <Compile Include="Assets\Scripts\CornControl.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Cartoon_Farm_Crops\README.txt" />
     <None Include="Assets\Assemblies\Middleware.dll" />
+    <None Include="Assets\Assemblies\UDPTinkering.dll" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
