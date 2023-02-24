@@ -34,11 +34,6 @@ namespace Middleware
             imuListen = StartListening(imuPortNumber, imuListenCancellation.Token);
         }
 
-        public string ClassifyMotion()
-        {
-            return "not implemented yet";
-        }
-
         private Task StartListening(int portNumber, CancellationToken cancellationToken)
         {
             return Task.Factory.StartNew(() =>
