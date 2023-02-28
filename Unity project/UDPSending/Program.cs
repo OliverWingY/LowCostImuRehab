@@ -7,7 +7,7 @@ namespace UDPSending
 {
     public class Program
     {
-        private static int portNumber = 17629;
+        private static int portNumber = 12345;
         private static Socket sock;
         private static CancellationTokenSource cts = new CancellationTokenSource();
 
