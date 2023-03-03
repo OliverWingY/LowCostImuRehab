@@ -8,18 +8,21 @@ namespace Middleware
 {
     public class UnityMonitoredVariables
     {
-        public double[] Position 
+        //xyzw
+        public double[] ForearmAngles 
         { 
-            get { return position; } 
-            internal set { position = value; }
+            get { return forearmAngles; } 
+            internal set { forearmAngles = value; } 
         }
-        private double[] position;
-        public double[] Angles 
-        { 
-            get { return angles; } 
-            internal set { angles = value; } 
+        private double[] forearmAngles = new double[4];
+
+        //xyzw
+        public double[] BycepAngles
+        {
+            get { return bycepAngles; }
+            internal set { bycepAngles = value; }
         }
-        private double[] angles;
+        private double[] bycepAngles = new double[4];
 
     }
 }

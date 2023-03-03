@@ -8,21 +8,26 @@ public class Startup : MonoBehaviour
 {
     public ImuDataConnector Middleware;
     public UnityMonitoredVariables ArmPosition;
-    public static double[] CurrentPosition;
+    public double[] Forearm;
+    public double[] Bycep;
     // Start is called before the first frame update
     void Start()
     {
         print("starting up");
-        CurrentPosition= new double[6];
+        Forearm = new double[4];
+        Bycep = new double[4];
         ArmPosition = new UnityMonitoredVariables();
-        Middleware = new ImuDataConnector(17628, ArmPosition);   
+        Middleware = new ImuDataConnector(12346, ref ArmPosition);
         if (Middleware != null) { print("successfully started up middleware"); }
+        else print("failed to start middleware");
     }
 
     // Update is called once per frame
     void Update()
     {
-        CurrentPosition = ArmPosition.Angles;
+        Bycep = ArmPosition.BycepAngles;
+        Forearm = ArmPosition.ForearmAngles;
+        if (Bycep != null && Forearm != null) print("Good arms");
     }
 
     public bool ClassifyMotion(string expectedMotion)

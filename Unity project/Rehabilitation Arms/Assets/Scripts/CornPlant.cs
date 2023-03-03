@@ -10,6 +10,7 @@ public class CornPlant : MonoBehaviour
 
     [SerializeField]
     private int halfMovementSeconds = 8;
+
     [SerializeField]
     private int resetTime = 2;    
     private TimeSpan halfMovementTime;

@@ -200,14 +200,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: -0.120829746, y: 0.0468316, z: -0.005706866, w: -0.9915515}
-  m_LocalPosition: {x: 0.169, y: 1.869, z: -0.699}
+  m_LocalRotation: {x: -0.15488532, y: -0.908105, z: 0.2014144, w: -0.33284846}
+  m_LocalPosition: {x: -0.53, y: 2.29, z: 1.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 13.896, y: -365.408, z: 0}
+  m_LocalEulerAnglesHint: {x: 27.964, y: -217.864, z: 9.595}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,7 +336,7 @@ BoxCollider:
   m_GameObject: {fileID: 1000010341032687}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.2, y: 2.2990406, z: 0.2}
   m_Center: {x: 0.2, y: 1.1495203, z: 0.08}
@@ -449,9 +449,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1199741675}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eddf69c4f68dd774bb8772a90d7f01f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 6be94a74abd034d4aac2c6b1752b6ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Forearm: []
+  Bycep: []
 --- !u!1 &1757180705
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,7 +595,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000010341032687}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -643,7 +645,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000010341032687}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6bce9a753ab0c64390419c6aa1f27a5, type: 3}
   m_Name: 
@@ -1408,6 +1410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3754466150022511178}
   - component: {fileID: 3754466150022511180}
+  - component: {fileID: 3754466150022511181}
   m_Layer: 0
   m_Name: Forearm.R
   m_TagString: Player
@@ -1511,6 +1514,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c22a833c99ddd844a5f3388cd9755e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3754466150022511181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3441249624833100528}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8743aaea348523b488bcb2e4489dc4cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TiltBycepUp: 105
+  TiltBycepDown: 107
+  TiltBycepClockwise: 0
+  TiltBycepAntiClockwise: 0
+  TwistBycepClockwise: 111
+  TwistBycepAntiClockwise: 117
+  Reset: 32
 --- !u!1 &3757030515031332849
 GameObject:
   m_ObjectHideFlags: 0
@@ -1654,9 +1676,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4122249166318908131}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a10c8ab8950ea4f4ba151c70f96017d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 8743aaea348523b488bcb2e4489dc4cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TiltBycepUp: 119
+  TiltBycepDown: 115
+  TiltBycepClockwise: 100
+  TiltBycepAntiClockwise: 97
+  TwistBycepClockwise: 101
+  TwistBycepAntiClockwise: 113
+  Reset: 32
 --- !u!114 &4122249166318908133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2750,13 +2779,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e63b469e99718479e3a9f9a5f0974d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TiltBycepUp: 119
-  TiltBycepDown: 115
-  TiltBycepClockwise: 100
-  TiltBycepAntiClockwise: 97
-  TwistBycepClockwise: 101
-  TwistBycepAntiClockwise: 113
-  Reset: 32
 --- !u!65 &7712889460811075112
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2960,13 +2982,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e63b469e99718479e3a9f9a5f0974d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TiltBycepUp: 105
-  TiltBycepDown: 107
-  TiltBycepClockwise: 108
-  TiltBycepAntiClockwise: 106
-  TwistBycepClockwise: 111
-  TwistBycepAntiClockwise: 117
-  Reset: 32
 --- !u!65 &8534375760095388022
 BoxCollider:
   m_ObjectHideFlags: 0

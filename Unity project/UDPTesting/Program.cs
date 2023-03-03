@@ -1,34 +1,51 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
+using Middleware;
 
 namespace UDPTesting
 {
     internal class Program
     {
-        private static int portNumber = 12345;
-        private static CancellationTokenSource cancellation = new CancellationTokenSource();
-        private static UdpClient udpServer;
         static void Main(string[] args)
         {
-            AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
-            udpServer = new UdpClient(portNumber);
-            var ipAddress = IPAddress.Parse("127.0.0.1");
-            var remoteEP = new IPEndPoint(ipAddress, portNumber);
-            while (!cancellation.IsCancellationRequested) 
-            {
-                Console.WriteLine($"Reading from port {ipAddress}");
-                var data = udpServer.Receive(ref remoteEP);
-                Console.WriteLine(data);
-                Console.WriteLine("message Recieved");
+            var Bycep = new double[4];
+            var Forarm = new double[4];
+            var ArmPosition = new UnityMonitoredVariables();
+            var Middleware = new ImuDataConnector(12346, ref ArmPosition);
+            Console.ReadLine();
+            while (true) 
+            {           
+                Console.ReadLine() ;
+                Bycep = ArmPosition.BycepAngles;
+                Forarm = ArmPosition.ForearmAngles;
+                for (int i = 0; i <4; i++) 
+                {
+                    Console.Write($"{Bycep[i]}f, ");
+                }
+                Console.WriteLine();
+                for (int i = 0; i < 4; i++)
+                {
+                    Console.Write($"{Forarm[i]}f, ");
+                }
             }
         }
 
-        private static void CurrentDomain_ProcessExit(object? sender, EventArgs e)
+        private static double[] DecodeMessage(byte[] data) 
         {
-            cancellation.Cancel();            
-            Thread.Sleep(2000);
-            udpServer.Close();
+            var stringData = Encoding.UTF8.GetString(data);
+            try
+            {
+                return stringData.Split(',').Select(r => Convert.ToDouble(r)).ToArray();
+            }
+            catch(Exception ex) 
+            {
+                return new double[12];
+            }
+
         }
+
+
     }
 }
