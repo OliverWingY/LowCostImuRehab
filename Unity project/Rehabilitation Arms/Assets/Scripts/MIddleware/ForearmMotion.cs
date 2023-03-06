@@ -5,19 +5,20 @@ using UnityEngine;
 public class ForearmMotion : MonoBehaviour
 {
     // Start is called before the first frame update
-    internal Startup myStartup;
+    internal Startup startup;
     internal BycepMotion bycep;
     private float toDegrees = (float)(180 / 3.14159);
     void Start()
     {
-        myStartup = GameObject.Find("Ground").GetComponent<Startup>();
-        bycep = GameObject.Find("Bycep.R").GetComponent<BycepMotion>();
+        startup = GameObject.Find("Ground").GetComponent<Startup>();        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //GetComponent<Transform>().rotation = new Quaternion((float)myStartup.Forearm[0], (float)myStartup.Forearm[1], (float)myStartup.Forearm[2], (float)myStartup.Forearm[3]);
-        GetComponent<Transform>().eulerAngles = new Vector3((float)myStartup.Forearm[0] * toDegrees, (float)myStartup.Forearm[1] * toDegrees, (float)myStartup.Forearm[2] * toDegrees);
+        GetComponent<Transform>().eulerAngles = new Vector3((float)startup.Forearm[0] * toDegrees, (float)startup.Forearm[1] * toDegrees, (float)startup.Forearm[2] * toDegrees);
+        print($"{this.gameObject.name} imu Euler angles:  {(float)startup.Forearm[0] * toDegrees}, {(float)startup.Forearm[1] * toDegrees}, {(float)startup.Forearm[2] * toDegrees}");
+        var eul = GetComponent<Transform>().eulerAngles;
+        print($"{this.gameObject.name} Euler angles:  {eul.x}, {eul.y}, {eul.z}");
     }
 }

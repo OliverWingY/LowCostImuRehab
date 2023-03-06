@@ -16,8 +16,9 @@ public class BycepMotion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //hi
-        //GetComponent<Transform>().rotation = new Quaternion((float)startup.Bycep[0], (float)startup.Bycep[1], (float)startup.Bycep[2], (float)startup.Bycep[3]);
         GetComponent<Transform>().eulerAngles = new Vector3((float)startup.Bycep[0] * toDegrees, (float)startup.Bycep[1] * toDegrees, (float)startup.Bycep[2] * toDegrees);
+        print($"{this.gameObject.name} imu Euler angles:  {(float)startup.Bycep[0] * toDegrees}, {(float)startup.Bycep[1] * toDegrees}, {(float)startup.Bycep[2] * toDegrees}");
+        var eul = GetComponent<Transform>().eulerAngles;
+        print($"{this.gameObject.name} Euler angles:  {eul.x}, {eul.y}, {eul.z}");
     }
 }
