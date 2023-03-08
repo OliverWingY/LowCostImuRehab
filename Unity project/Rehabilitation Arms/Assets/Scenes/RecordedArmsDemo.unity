@@ -200,14 +200,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.15759505, y: -0.30809796, z: -0.051831633, w: 0.93677795}
-  m_LocalPosition: {x: 0.864, y: 1.979, z: -1.191}
+  m_LocalRotation: {x: 0.1522202, y: -0.6915417, z: 0.15269116, w: 0.68940884}
+  m_LocalPosition: {x: 1.68, y: 2.289, z: -0.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 15.267, y: -37.973, z: -11.614}
+  m_LocalEulerAnglesHint: {x: 24.902, y: -90.177, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1492,7 +1492,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3441249624833100528}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 8.881784e-16, z: 0.6816391, w: 0.73168856}
   m_LocalPosition: {x: -0.00000023096806, y: 0.28202677, z: -0.0000001937151}
   m_LocalScale: {x: 1, y: 1.0000002, z: 1.0000002}
   m_ConstrainProportionsScale: 0
@@ -1501,7 +1501,7 @@ Transform:
   - {fileID: 3686644003617146118}
   m_Father: {fileID: 2918768312654428322}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 85.944}
 --- !u!114 &3754466150022511180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1509,11 +1509,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3441249624833100528}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c22a833c99ddd844a5f3388cd9755e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xOffset: 90
+  yOffset: 0
+  zOffset: 90
 --- !u!114 &3754466150022511181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1698,9 +1701,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9cecb90a806f784fa9ffdc42625a740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xOffset: 270
-  yOffset: 0
-  zOffset: 0
+  xOffset: 250
+  yOffset: 20
+  zOffset: -20
 --- !u!1 &4142780921063574719
 GameObject:
   m_ObjectHideFlags: 0
