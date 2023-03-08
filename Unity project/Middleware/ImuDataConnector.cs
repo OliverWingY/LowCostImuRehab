@@ -17,7 +17,6 @@ namespace Middleware
         private static Task imuListen;
         private static UdpClient imuServer;
         private static CancellationTokenSource imuListenCancellation = new CancellationTokenSource();
-        private StringBuilder stringBuilder= new StringBuilder();
         //variables for sending data to unity
 
         private UnityMonitoredVariables unityArm;
@@ -49,7 +48,8 @@ namespace Middleware
                 while (!cancellationToken.IsCancellationRequested)
                 {                   
                     
-                    //the code will stop here and wait for the next imu packet
+                    //the code will stop here and wait for the next imu packet 
+                    //Todo: add timeout
                     var imuData = imuServer.Receive(ref imuRemoteEP);
                     //RecordedTimes[i] = DateTime.Now;
                     var decodedData = DecodeImuData(imuData);
@@ -59,7 +59,7 @@ namespace Middleware
 
                     if (i == 800)
                     {                        
-                        var str = stringBuilder.ToString();
+                       
                         //this should run asyncrounously so the database stuff can take as long as it needs while the loop continues
                         Task.Run(() =>
                         {
