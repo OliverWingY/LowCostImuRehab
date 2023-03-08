@@ -23,7 +23,6 @@ public class BycepMotion : MonoBehaviour
         var transform = GetComponent<Transform>();
         transform.eulerAngles = new Vector3((float)startup.Bycep[1] * toDegrees, -(float)startup.Bycep[2] * toDegrees, -(float)startup.Bycep[0] * toDegrees);
         transform.Rotate(new Vector3(xOffset, yOffset, zOffset));
-        print($"{this.gameObject.name} imu Euler angles:  {(float)startup.Bycep[0] * toDegrees}, {(float)startup.Bycep[1] * toDegrees}, {(float)startup.Bycep[2] * toDegrees}");
         var eul = GetComponent<Transform>().eulerAngles;
         print($"{this.gameObject.name} Euler angles:  {eul.x}, {eul.y}, {eul.z}");
     }
