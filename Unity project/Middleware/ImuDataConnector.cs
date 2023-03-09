@@ -44,20 +44,27 @@ namespace Middleware
             {
                 int i = 0;
                 var imuRemoteEP = new IPEndPoint(IPAddress.Any, portNumber);
+                byte[] imuData;
                 //this loop will currently run as the imu data comes in, all race conditions are dealt with using an ostridge algorithm 
                 while (!cancellationToken.IsCancellationRequested)
-                {                   
-                    
+                {
+
                     //the code will stop here and wait for the next imu packet 
-                    //Todo: add timeout
-                    var imuData = imuServer.Receive(ref imuRemoteEP);
+                                       
+                    var recieveTask = Task.Run(() => imuServer.Receive(ref imuRemoteEP));
+                    if (recieveTask.Wait(TimeSpan.FromSeconds(1)))
+                        imuData = recieveTask.Result;
+                    else
+                        continue;
+                    
+                    
                     //RecordedTimes[i] = DateTime.Now;
                     var decodedData = DecodeImuData(imuData);
                     RecordedMotion[i] = decodedData;
                     if (decodedData != null && decodedData != new double[21])
                         UpdateUnity(decodedData);
 
-                    if (i == 800)
+                    if (i == 799)
                     {                        
                        
                         //this should run asyncrounously so the database stuff can take as long as it needs while the loop continues

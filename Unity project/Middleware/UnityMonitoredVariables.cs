@@ -14,7 +14,7 @@ namespace Middleware
             get { return forearmAngles; } 
             internal set { forearmAngles = value; } 
         }
-        private double[] forearmAngles = new double[4];
+        private double[] forearmAngles = new double[3];
 
         //xyzw
         public double[] BycepAngles
@@ -22,7 +22,7 @@ namespace Middleware
             get { return bycepAngles; }
             internal set { bycepAngles = value; }
         }
-        private double[] bycepAngles = new double[4];
+        private double[] bycepAngles = new double[3];
 
     }
 }
