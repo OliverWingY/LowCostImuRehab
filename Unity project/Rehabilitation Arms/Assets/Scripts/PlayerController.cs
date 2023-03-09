@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public float horizontalInput;
     public float speed = 10.0f;
     public float xRange = 4;
-    private Vector3 offset = new Vector3(0, -0.5f, 3);
+    private Vector3 offset = new Vector3(0, 5f,3);
 
     public GameObject ProjectilePrefab;
     // Start is called before the first frame update

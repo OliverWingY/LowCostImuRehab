@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Targets
+  - Spawn Rock
+  - Banana
+  - Obstacle
   layers:
   - Default
   - TransparentFX
