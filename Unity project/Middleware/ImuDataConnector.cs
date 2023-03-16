@@ -105,41 +105,10 @@ namespace Middleware
             var imu3angle = ToEulerAngles(new Quaternion((float)imuData[9], (float)imuData[10], (float)imuData[11], (float)imuData[8]));
             var forearmAngle = imu2angle;
             var bycepAngle = imu3angle;
-            //var forearmAngle = CorrectForarmAngles(imu2angle);
-            //var bycepAngle = CorrectBycepAngles(imu3angle);
             unityArm.ForearmAngles = new double[] { forearmAngle.X, forearmAngle.Y, forearmAngle.Z};
             unityArm.BycepAngles = new double[] { bycepAngle.X, bycepAngle.Y, bycepAngle.Z };
         }
 
-        private static Vector3 CorrectForarmAngles(Vector3 forearmAngles)
-        {
-            var rotationMatrix = new Matrix4x4(
-                 0.0362650832920928f, -0.113620567084727f, 0.993438101243670f, 0,
-                0.729404683305546f, -0.829108026237770f, -0.1020638528782970f, 0,
-                0.744388572885702f, 0.547421453327740f, 0.05161113187103810f, 0,
-                0, 0, 0, 1f);
-
-            var newAngle = new Vector3(
-                (forearmAngles.X * rotationMatrix.M11 + forearmAngles.Y * rotationMatrix.M12 +forearmAngles.Z*rotationMatrix.M13),
-                (forearmAngles.X * rotationMatrix.M21 + forearmAngles.Y * rotationMatrix.M22 +forearmAngles.Z * rotationMatrix.M23),
-                (forearmAngles.X * rotationMatrix.M31 + forearmAngles.Y * rotationMatrix.M32 +forearmAngles.Z * rotationMatrix.M33));
-            return newAngle;
-        }
-
-        private static Vector3 CorrectBycepAngles(Vector3 forearmAngles)
-        {
-            var rotationMatrix = new Matrix4x4(
-                -0.0117457199073040f, 0.107380277696468f, - 0.994149569030582f,0,
-                - 0.746109187775474f, - 0.486599101469251f, - 0.0627843757375471f,0,
-                - 0.665839188622826f,  0.867001032531765f,   0.0878905942610141f,0,
-                0, 0, 0, 1f);
-
-            var newAngle = new Vector3(
-                (forearmAngles.X * rotationMatrix.M11 + forearmAngles.Y * rotationMatrix.M12 + forearmAngles.Z * rotationMatrix.M13),
-                (forearmAngles.X * rotationMatrix.M21 + forearmAngles.Y * rotationMatrix.M22 + forearmAngles.Z * rotationMatrix.M23),
-                (forearmAngles.X * rotationMatrix.M31 + forearmAngles.Y * rotationMatrix.M32 + forearmAngles.Z * rotationMatrix.M33));
-            return newAngle;
-        }
         private static Vector3 ToEulerAngles(Quaternion q)
         {
             Vector3 angles = new Vector3();
