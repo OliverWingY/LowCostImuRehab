@@ -8,6 +8,9 @@ TagManager:
   - Spawn Rock
   - Banana
   - Obstacle
+  - Destroyable
+  - Enemy
+  - Powerup
   layers:
   - Default
   - TransparentFX

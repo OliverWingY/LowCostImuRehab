@@ -43,6 +43,6 @@ public class TiltArm : MonoBehaviour
         if (Input.GetKey(Reset))
             transform.rotation = new Quaternion() { eulerAngles = new Vector3(-90, 0, 90) };
         var qtn = transform.eulerAngles;
-        print($"{this.gameObject.name} Euler angles:  {qtn.x}, {qtn.y}, {qtn.z}");
+        //print($"{this.gameObject.name} Euler angles:  {qtn.x}, {qtn.y}, {qtn.z}");
     }
 }

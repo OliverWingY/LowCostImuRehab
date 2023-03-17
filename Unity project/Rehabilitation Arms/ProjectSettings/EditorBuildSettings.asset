@@ -8,10 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/RecordedArmsDemo.unity
-    guid: b218536a36c1625428f0e8ae88b97749
+    path: Assets/Scenes/Start menu.unity
+    guid: 7226fc40a4441a74dab6120062e0c7b9
   - enabled: 1
-    path: Assets/Scenes/My Scene.unity
+    path: Assets/Scenes/Game.unity
     guid: 2afb2f3c8db7002419deb3a6f4c39388
   m_configObjects: {}

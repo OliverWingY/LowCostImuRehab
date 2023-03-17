@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -8,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 10.0f;
     public float xRange = 4;
     private Vector3 offset = new Vector3(0, 5f,3);
+    
 
     public GameObject ProjectilePrefab;
     // Start is called before the first frame update
@@ -35,6 +37,8 @@ public class PlayerController : MonoBehaviour
             //Launch rock
             Instantiate(ProjectilePrefab, transform.position + offset, ProjectilePrefab.transform.rotation);
         }
-
     }
+ 
+
+    
 }
