@@ -13,10 +13,16 @@ namespace Middleware
 {    
     public class ImuDataConnector : IDisposable
     {
-        //variables for listening to imu data
+        //variables for communicating with python
         private static Task imuListen;
         private static UdpClient imuServer;
+        private static Socket sendSock;
+        private static IPEndPoint sendEP;
         private static CancellationTokenSource imuListenCancellation = new CancellationTokenSource();
+
+        private static byte[] startMessage = Encoding.UTF8.GetBytes("Started");
+        private static byte[] stopMessage = Encoding.UTF8.GetBytes("Stopped");
+        private static byte[] eventMessage = Encoding.UTF8.GetBytes("Event");
         //variables for sending data to unity
 
         private UnityMonitoredVariables unityArm;
@@ -26,11 +32,13 @@ namespace Middleware
         public static double[][] RecordedMotion = new double[800][]; //8 second of xyz acceleration and angle
         public static DateTime[] RecordedTimes = new DateTime[800];
 
-        public ImuDataConnector(int imuPortNumber, ref UnityMonitoredVariables UnityMonitoredVariables) 
+        public ImuDataConnector(int imuRecievePortNumber, int imuSendPortNumber, ref UnityMonitoredVariables UnityMonitoredVariables) 
         {
             unityArm = UnityMonitoredVariables;
-            imuServer = new UdpClient(imuPortNumber);
-            imuListen = StartListening(imuPortNumber, imuListenCancellation.Token);
+            imuServer = new UdpClient(imuRecievePortNumber);
+            imuListen = StartListening(imuRecievePortNumber, imuListenCancellation.Token);
+            sendEP = new IPEndPoint(IPAddress.Parse("127.0.0.1"), imuSendPortNumber);
+            sendSock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
         }
 
         public string ClassifyMotion()
@@ -140,22 +148,23 @@ namespace Middleware
             return angles;
         }
 
-        //functions for dealing with matlab and database
-        private static object GetMetaData(double[][] data)
-        {            
-            throw new NotImplementedException();
-        }
-        private static void UpdateDatabase()
+        public void NotifyStart()
         {
-            throw new NotImplementedException();
+            sendSock.SendTo(startMessage, sendEP);
         }
-        private static void SendMetaDataToDatabase(object dbData)
+
+        public void NotifyEnd() 
         {
-            throw new NotImplementedException();
-        }        
+            sendSock.SendTo(stopMessage, sendEP);
+        }
+
+        public void NotifyEvent()
+        {
+            sendSock.SendTo(eventMessage, sendEP);
+        }       
 
         public void Dispose()
-        {            
+        {
             imuListenCancellation.Cancel();            
             imuListen.Wait();
             imuServer.Close();

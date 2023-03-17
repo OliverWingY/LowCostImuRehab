@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.33214.272
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{B3D01AB4-6947-0FD8-AE53-9E4A8CDD0B38}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Communication", "Communication", "{A8478458-E8BD-4ED4-A64B-65D8DB842126}"
@@ -11,9 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityListener", "..\UDPTink
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware", "..\Middleware\Middleware.csproj", "{42AE8436-7A76-40EC-BAD0-77F33D4C7106}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Speed Testing", "Speed Testing", "{3EE4BCBF-736D-4E08-B733-1765FB701D4D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{3EE4BCBF-736D-4E08-B733-1765FB701D4D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatlabSpeedTest", "..\MatlabSpeedTest\MatlabSpeedTest.csproj", "{6331D082-0ED5-46DC-A3A5-355DF6BCFDF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortListener", "..\PortListener\PortListener.csproj", "{77F0E837-777F-4965-9859-19C3927C014C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +37,10 @@ Global
 		{6331D082-0ED5-46DC-A3A5-355DF6BCFDF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6331D082-0ED5-46DC-A3A5-355DF6BCFDF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6331D082-0ED5-46DC-A3A5-355DF6BCFDF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77F0E837-777F-4965-9859-19C3927C014C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77F0E837-777F-4965-9859-19C3927C014C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77F0E837-777F-4965-9859-19C3927C014C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77F0E837-777F-4965-9859-19C3927C014C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,8 +50,6 @@ Global
 		{42AE8436-7A76-40EC-BAD0-77F33D4C7106} = {A8478458-E8BD-4ED4-A64B-65D8DB842126}
 		{3EE4BCBF-736D-4E08-B733-1765FB701D4D} = {A8478458-E8BD-4ED4-A64B-65D8DB842126}
 		{6331D082-0ED5-46DC-A3A5-355DF6BCFDF2} = {3EE4BCBF-736D-4E08-B733-1765FB701D4D}
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C7397EB1-AECC-45CC-A3B9-EAFE27D39CAF}
+		{77F0E837-777F-4965-9859-19C3927C014C} = {3EE4BCBF-736D-4E08-B733-1765FB701D4D}
 	EndGlobalSection
 EndGlobal

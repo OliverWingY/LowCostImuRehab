@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Drawing.Text;
+using Middleware;
 
 public class DetectInstantiate : MonoBehaviour
 {
     private Vector3 offset = new Vector3(0, -0.5f, 1);
+    private ImuDataConnector middleware;
     public GameObject ProjectilePrefab;
     public bool hasPowerup;
     public GameObject powerupIndicator;
@@ -19,6 +21,8 @@ public class DetectInstantiate : MonoBehaviour
     void Start()
     {
         isGameActive = true;
+        middleware = GameObject.Find("Ground").GetComponent<Startup>().Middleware;
+        print("Detection is alive");
     }
 
     // Update is called once per frame
@@ -33,6 +37,7 @@ public class DetectInstantiate : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        middleware.NotifyEvent();
 
         if (other.gameObject.CompareTag("Banana"))
         {

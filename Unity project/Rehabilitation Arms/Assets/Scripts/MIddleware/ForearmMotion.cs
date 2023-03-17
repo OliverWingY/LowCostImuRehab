@@ -8,9 +8,9 @@ public class ForearmMotion : MonoBehaviour
     internal Startup startup;
     internal BycepMotion bycep;
     private float toDegrees = (float)(180 / 3.14159);
-    public float xOffset;
-    public float yOffset;
-    public float zOffset;
+    public float xOffset = 0;
+    public float yOffset = 0;
+    public float zOffset = 90;
     void Start()
     {
         startup = GameObject.Find("Ground").GetComponent<Startup>();        

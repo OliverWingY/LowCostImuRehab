@@ -352,7 +352,6 @@ GameObject:
   - component: {fileID: 1199741678}
   - component: {fileID: 1199741677}
   - component: {fileID: 1199741676}
-  - component: {fileID: 1199741680}
   m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
@@ -440,20 +439,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1199741680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1199741675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6be94a74abd034d4aac2c6b1752b6ad1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Forearm: []
-  Bycep: []
 --- !u!1 &1757180705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1411,6 +1396,7 @@ GameObject:
   - component: {fileID: 3754466150022511178}
   - component: {fileID: 3754466150022511180}
   - component: {fileID: 3754466150022511181}
+  - component: {fileID: 3754466150022511182}
   m_Layer: 0
   m_Name: Forearm.R
   m_TagString: Player
@@ -1536,6 +1522,20 @@ MonoBehaviour:
   TwistBycepClockwise: 111
   TwistBycepAntiClockwise: 117
   Reset: 32
+--- !u!114 &3754466150022511182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3441249624833100528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be94a74abd034d4aac2c6b1752b6ad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Forearm: []
+  Bycep: []
 --- !u!1 &3757030515031332849
 GameObject:
   m_ObjectHideFlags: 0

@@ -4059,6 +4059,8 @@ GameObject:
   - component: {fileID: 3754466150022511179}
   - component: {fileID: 3754466150022511180}
   - component: {fileID: 3754466150022511182}
+  - component: {fileID: 3754466150022511184}
+  - component: {fileID: 3754466150022511183}
   m_Layer: 0
   m_Name: Forearm.R
   m_TagString: Player
@@ -4201,6 +4203,35 @@ MonoBehaviour:
   scoreText: {fileID: 251182520}
   gameOverText: {fileID: 339023584}
   isGameActive: 0
+--- !u!114 &3754466150022511183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3441249624833100528}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c22a833c99ddd844a5f3388cd9755e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xOffset: 0
+  yOffset: 0
+  zOffset: 0
+--- !u!114 &3754466150022511184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3441249624833100528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be94a74abd034d4aac2c6b1752b6ad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Forearm: []
+  Bycep: []
 --- !u!1 &3757030515031332849
 GameObject:
   m_ObjectHideFlags: 0
@@ -4400,6 +4431,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2918768312654428322}
   - component: {fileID: 4122249166318908132}
+  - component: {fileID: 4122249166318908133}
   m_Layer: 0
   m_Name: Bicep.R
   m_TagString: Player
@@ -4426,6 +4458,21 @@ MonoBehaviour:
   TwistBycepClockwise: 0
   TwistBycepAntiClockwise: 0
   Reset: 0
+--- !u!114 &4122249166318908133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4122249166318908131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cecb90a806f784fa9ffdc42625a740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xOffset: 270
+  yOffset: 0
+  zOffset: 0
 --- !u!1 &4142780921063574719
 GameObject:
   m_ObjectHideFlags: 0
