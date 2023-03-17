@@ -10,6 +10,9 @@ public class Startup : MonoBehaviour
     public UnityMonitoredVariables ArmPosition;
     public double[] Forearm;
     public double[] Bycep;
+    public float yRotation =0;
+    public KeyCode Clockwise;
+    public KeyCode AntiClockwise;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,8 @@ public class Startup : MonoBehaviour
     {
         Bycep = ArmPosition.BycepAngles;
         Forearm = ArmPosition.ForearmAngles;
+        if (Input.GetKey(Clockwise)) yRotation += 0.1f;
+        if (Input.GetKey(AntiClockwise)) yRotation -= 0.1f;
     }
 
     public bool ClassifyMotion(string expectedMotion)
