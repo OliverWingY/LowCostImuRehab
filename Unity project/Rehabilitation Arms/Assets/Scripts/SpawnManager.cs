@@ -8,7 +8,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] incomingObjects;
     private float spawnRangeX = 4;
     private float spawnPosZ = 5;
-    private float startDelay = 0;
+    private float startDelay = 2;
     private float spawnInterval = 3;
     public GameObject playersObject;
 
@@ -36,7 +36,7 @@ public class SpawnManager : MonoBehaviour
         // if the third object is spawned, set its position at a set offset from the main camera
         if (spawnHeight == 2.0f)
         {
-            spawnPos = Camera.main.transform.position + new Vector3(-0.306f, -0.184f, 0.496f);
+            spawnPos = Camera.main.transform.position + new Vector3(-0.106f, -0.184f, 0.496f);
         }
         else
         {

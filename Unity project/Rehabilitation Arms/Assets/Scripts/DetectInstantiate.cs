@@ -7,17 +7,20 @@ using Middleware;
 
 public class DetectInstantiate : MonoBehaviour
 {
+  
     private Vector3 offset = new Vector3(0, -0.5f, 1);
     private ImuDataConnector middleware;
     public GameObject ProjectilePrefab;
     public bool hasPowerup;
     public GameObject powerupIndicator;
-    private int score;
+    int score;
+    public int HighScoreValue;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
     public bool isGameActive;
-    public GameObject boxPrefab;
     private const int MAX_BOXES = 5;
+    public TextMeshProUGUI highScoreText;
+    
 
     //public SphereCollider col;
     // Start is called before the first frame update
@@ -27,6 +30,7 @@ public class DetectInstantiate : MonoBehaviour
         middleware = GameObject.Find("Ground").GetComponent<Startup>().Middleware;
         middleware.NotifyStart();
         print("Detection is alive");
+        UpdateHighScoreText();
     }
 
     // Update is called once per frame
@@ -45,9 +49,6 @@ public class DetectInstantiate : MonoBehaviour
         middleware.NotifyEnd();
         isGameActive = false;
         gameOverText.text = "Gameover!!! Your score is " + scoreText.text;
-
-
-        
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -63,7 +64,6 @@ public class DetectInstantiate : MonoBehaviour
             else
             {
                 UpdateScore(1);
-               
             }
         }
         else if (other.gameObject.CompareTag("Spawn Rock"))
@@ -82,25 +82,33 @@ public class DetectInstantiate : MonoBehaviour
             {
                 GameOver();
             }
-
         }
+    void CheckHighScore()
+    {
+        if (score > PlayerPrefs.GetInt("HighScoreValue", 0))
+        {
+            PlayerPrefs.SetInt("HighScoreValue", score);
+        }
+    }
+
+    void UpdateHighScoreText()
+    {
+        highScoreText.text = $"HighScore: {PlayerPrefs.GetInt("HighScoreValue", 0)}";
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
             GameOver();
             Time.timeScale = 0;
-
         }
     }
-
-
     IEnumerator PowerupCountdwonRoutine()
     {
-        yield return new WaitForSeconds(12);
+        yield return new WaitForSeconds(1);
         hasPowerup = false;
         powerupIndicator.gameObject.SetActive(false);
-
     }
     private void UpdateScore(int scoreToAdd)
     {
