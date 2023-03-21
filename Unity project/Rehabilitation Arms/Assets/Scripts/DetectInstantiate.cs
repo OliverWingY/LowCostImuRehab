@@ -42,6 +42,10 @@ public class DetectInstantiate : MonoBehaviour
     {
         gameOverText.gameObject.SetActive(true);
         isGameActive = false;
+        gameOverText.text = "Gameover!!! Your score is " + scoreText.text;
+
+
+        
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -57,6 +61,7 @@ public class DetectInstantiate : MonoBehaviour
             else
             {
                 UpdateScore(1);
+               
             }
         }
         else if (other.gameObject.CompareTag("Spawn Rock"))
