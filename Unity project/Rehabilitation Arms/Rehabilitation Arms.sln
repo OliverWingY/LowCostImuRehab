@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.33214.272
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{B3D01AB4-6947-0FD8-AE53-9E4A8CDD0B38}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Communication", "Communication", "{A8478458-E8BD-4ED4-A64B-65D8DB842126}"
@@ -46,8 +44,5 @@ Global
 		{42AE8436-7A76-40EC-BAD0-77F33D4C7106} = {A8478458-E8BD-4ED4-A64B-65D8DB842126}
 		{3EE4BCBF-736D-4E08-B733-1765FB701D4D} = {A8478458-E8BD-4ED4-A64B-65D8DB842126}
 		{6331D082-0ED5-46DC-A3A5-355DF6BCFDF2} = {3EE4BCBF-736D-4E08-B733-1765FB701D4D}
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C7397EB1-AECC-45CC-A3B9-EAFE27D39CAF}
 	EndGlobalSection
 EndGlobal

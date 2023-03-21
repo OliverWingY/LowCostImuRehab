@@ -14,6 +14,9 @@ public class DetectInstantiate : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
     public bool isGameActive;
+    public GameObject boxPrefab;
+    private const int MAX_BOXES = 5;
+
     //public SphereCollider col;
     // Start is called before the first frame update
     void Start()
@@ -24,7 +27,12 @@ public class DetectInstantiate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        int numBoxes = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        if (numBoxes > MAX_BOXES)
+        {
+            GameOver();
+            Time.timeScale = 0;
+        }
     }
     public void GameOver()
     {
@@ -33,42 +41,48 @@ public class DetectInstantiate : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.gameObject.CompareTag("Banana"))
         {
             Destroy(other.gameObject);
-            UpdateScore(1);
+            if (hasPowerup)
+            {
+                UpdateScore(2);
+            }
+            else
+            {
+                UpdateScore(1);
+            }
         }
         else if (other.gameObject.CompareTag("Spawn Rock"))
-        {
+            {
 
-            Instantiate(ProjectilePrefab, transform.position + offset, ProjectilePrefab.transform.rotation);
-        }
-        else if (other.gameObject.CompareTag("Powerup"))
-        {
-            hasPowerup = true;
-            powerupIndicator.gameObject.SetActive(true);
-            Destroy(other.gameObject);
-            StartCoroutine(PowerupCountdwonRoutine());
-        }
-        else if (other.gameObject.CompareTag("Enemy")) {
-           GameOver();
-        }
-        
-    }
+                Instantiate(ProjectilePrefab, transform.position + offset, ProjectilePrefab.transform.rotation);
+            }
+            else if (other.gameObject.CompareTag("Powerup"))
+            {
+                hasPowerup = true;
+                powerupIndicator.gameObject.SetActive(true);
+                Destroy(other.gameObject);
+                StartCoroutine(PowerupCountdwonRoutine());
+            }
+            else if (other.gameObject.CompareTag("Enemy"))
+            {
+                GameOver();
+            }
 
+        }
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
             GameOver();
             Time.timeScale = 0;
-           
+
         }
     }
 
 
-        IEnumerator PowerupCountdwonRoutine()
+    IEnumerator PowerupCountdwonRoutine()
     {
         yield return new WaitForSeconds(12);
         hasPowerup = false;
@@ -80,6 +94,6 @@ public class DetectInstantiate : MonoBehaviour
         score += scoreToAdd;
         scoreText.text = "" + score;
     }
-   
 }
+
 
