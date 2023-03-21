@@ -24,7 +24,6 @@ public class Startup : MonoBehaviour
         if (Middleware != null) 
         { 
             print("successfully started up middleware");
-            Middleware.NotifyStart();
         }
         else print("failed to start middleware");
     }
@@ -46,7 +45,6 @@ public class Startup : MonoBehaviour
     private void OnDisable()
     {
         print("Closing middleware");
-        Middleware.NotifyEnd();
         Middleware.Dispose();
         print("Closed middleware");
     }

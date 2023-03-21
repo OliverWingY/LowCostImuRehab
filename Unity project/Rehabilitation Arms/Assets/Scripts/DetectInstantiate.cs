@@ -25,6 +25,7 @@ public class DetectInstantiate : MonoBehaviour
     {
         isGameActive = true;
         middleware = GameObject.Find("Ground").GetComponent<Startup>().Middleware;
+        middleware.NotifyStart();
         print("Detection is alive");
     }
 
@@ -41,6 +42,7 @@ public class DetectInstantiate : MonoBehaviour
     public void GameOver()
     {
         gameOverText.gameObject.SetActive(true);
+        middleware.NotifyEnd();
         isGameActive = false;
     }
     private void OnTriggerEnter(Collider other)
