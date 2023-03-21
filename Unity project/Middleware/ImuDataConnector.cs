@@ -20,17 +20,14 @@ namespace Middleware
         private static IPEndPoint sendEP;
         private static CancellationTokenSource imuListenCancellation = new CancellationTokenSource();
 
-        private static byte[] startMessage = Encoding.UTF8.GetBytes("Started");
-        private static byte[] stopMessage = Encoding.UTF8.GetBytes("Stopped");
-        private static byte[] eventMessage = Encoding.UTF8.GetBytes("Event");
+        private static bool gameRunning = false;
+        private static bool eventOccurred = false;
         //variables for sending data to unity
 
         private UnityMonitoredVariables unityArm;
 
         //variables for creating metadata
        // private static MatlabRunner matlabRunner;
-        public static double[][] RecordedMotion = new double[800][]; //8 second of xyz acceleration and angle
-        public static DateTime[] RecordedTimes = new DateTime[800];
 
         public ImuDataConnector(int imuRecievePortNumber, int imuSendPortNumber, ref UnityMonitoredVariables UnityMonitoredVariables) 
         {
@@ -53,55 +50,57 @@ namespace Middleware
                 int i = 0;
                 var imuRemoteEP = new IPEndPoint(IPAddress.Any, portNumber);
                 byte[] imuData;
+                byte[] backData;
                 //this loop will currently run as the imu data comes in, all race conditions are dealt with using an ostridge algorithm 
                 while (!cancellationToken.IsCancellationRequested)
                 {
 
                     //the code will stop here and wait for the next imu packet 
-                                       
+
                     var recieveTask = Task.Run(() => imuServer.Receive(ref imuRemoteEP));
                     if (recieveTask.Wait(TimeSpan.FromSeconds(1)))
                         imuData = recieveTask.Result;
                     else
                         continue;
-                    
-                    
-                    //RecordedTimes[i] = DateTime.Now;
-                    var decodedData = DecodeImuData(imuData);
-                    RecordedMotion[i] = decodedData;
+                    var stringData = Encoding.UTF8.GetString(imuData);
+                    var decodedData = DecodeImuData(stringData);
                     if (decodedData != null && decodedData != new double[21])
                         UpdateUnity(decodedData);
 
-                    if (i == 799)
-                    {                        
-                       
-                        //this should run asyncrounously so the database stuff can take as long as it needs while the loop continues
-                        Task.Run(() =>
-                        {
-                            //var DBData = GetMetaData(RecordedMotion);
-                            //SendMetaDataToDatabase(DBData);
-                        });
-                        i = 0;
+
+                    if (eventOccurred)
+                    {
+                        var backString = $"{stringData},{gameRunning},{true}";
+                        backData = Encoding.UTF8.GetBytes(backString);
+                        eventOccurred = false;
                     }
-                    else  i++; 
+                    else
+                    {
+                        var backString = $"{stringData},{gameRunning},{false}";
+                        backData = Encoding.UTF8.GetBytes(backString);
+                    }
+
+                    sendSock.Send(backData);
                 }
             });
         }
 
         //functions for dealing with Imu data
-        private static double[] DecodeImuData(byte[] data)
+        private static double[] DecodeImuData(string stringData)
         {
-            //assuming 2 imus, angle + acceleration data
+            //assuming 3 imus, angle + acceleration data
             var doubleArray = new double[21];
-            var stringData = Encoding.UTF8.GetString(data);
-            //todo replace this with some good catching logic
+            
             try
             {
-                 doubleArray = stringData.Split(',').Select(r => Convert.ToDouble(r)).ToArray();
+                var stringArray = stringData.Split(',');
+                for (int i = 0; i < 21; i++)
+                {
+                    doubleArray[i] = Convert.ToDouble(stringArray[i]);
+                }
             }
-            catch 
+            catch
             {
-                var bleh = stringData;
                 doubleArray = new double[21];
             }
             return doubleArray;
@@ -150,17 +149,17 @@ namespace Middleware
 
         public void NotifyStart()
         {
-            sendSock.SendTo(startMessage, sendEP);
+            gameRunning = true;
         }
 
         public void NotifyEnd() 
         {
-            sendSock.SendTo(stopMessage, sendEP);
+            gameRunning = false;
         }
 
         public void NotifyEvent()
         {
-            sendSock.SendTo(eventMessage, sendEP);
+            eventOccurred = true;            
         }       
 
         public void Dispose()

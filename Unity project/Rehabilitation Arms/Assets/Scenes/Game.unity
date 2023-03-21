@@ -839,7 +839,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.51, y: 0.12800002, z: 0.04}
+  m_LocalPosition: {x: -0.51, y: 0.12800002, z: -1.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2689,7 +2689,7 @@ MonoBehaviour:
   - {fileID: 7226774797657144225, guid: 76660ac16d713e9429e8c81648c15091, type: 3}
   - {fileID: 4150592907870785031, guid: c972c383f7f479e4aaf9e71f225e2884, type: 3}
   - {fileID: 8941152957101701628, guid: eb73a8307838a2b4fa1875311b9a77b2, type: 3}
-  playersObject: {fileID: 330585543}
+  playersObject: {fileID: 0}
 --- !u!4 &1440804172
 Transform:
   m_ObjectHideFlags: 0
@@ -4374,8 +4374,6 @@ MonoBehaviour:
   scoreText: {fileID: 251182520}
   gameOverText: {fileID: 339023584}
   isGameActive: 0
-  boxPrefab: {fileID: 4150592907870785031, guid: c972c383f7f479e4aaf9e71f225e2884,
-    type: 3}
 --- !u!114 &3754466150022511183
 MonoBehaviour:
   m_ObjectHideFlags: 0
