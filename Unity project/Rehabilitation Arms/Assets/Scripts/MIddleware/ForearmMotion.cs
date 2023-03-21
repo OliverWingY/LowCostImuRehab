@@ -8,9 +8,9 @@ public class ForearmMotion : MonoBehaviour
     internal Startup startup;
     internal BycepMotion bycep;
     private float toDegrees = (float)(180 / 3.14159);
-    public float xOffset;
-    public float yOffset;
-    public float zOffset;
+    public float xOffset = 0;
+    public float yOffset = 0;
+    public float zOffset = 90;
     void Start()
     {
         startup = GameObject.Find("Ground").GetComponent<Startup>();        
@@ -22,8 +22,7 @@ public class ForearmMotion : MonoBehaviour
         var transform = GetComponent<Transform>();
         transform.eulerAngles = new Vector3((float)startup.Forearm[1] * toDegrees, -(float)startup.Forearm[2] * toDegrees, -(float)startup.Forearm[0] * toDegrees);
         transform.Rotate(xOffset, yOffset, zOffset);
-        //var eul = GetComponent<Transform>().eulerAngles;
-        //print($"{this.gameObject.name} Euler angles:  {eul.x}, {eul.y}, {eul.z}");
+        transform.Rotate(0, startup.yRotation, 0, Space.World);
         print($"Euler angles: {startup.Forearm[0]*toDegrees}, {startup.Forearm[1] * toDegrees}, {startup.Forearm[2] * toDegrees}");
     }
 }

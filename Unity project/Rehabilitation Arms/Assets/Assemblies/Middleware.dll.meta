@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 20a1d36dbb56698488f2f42d968eab56
+guid: da9643f2257161c48a31c7a0e5e4b138
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -14,7 +14,7 @@ PluginImporter:
   - first:
       Any: 
     second:
-      enabled: 0
+      enabled: 1
       settings: {}
   - first:
       Editor: Editor
@@ -23,15 +23,11 @@ PluginImporter:
       settings:
         DefaultValueInitialized: true
   - first:
-      iPhone: iOS
+      Windows Store Apps: WindowsStoreApps
     second:
-      enabled: 1
-      settings: {}
-  - first:
-      tvOS: tvOS
-    second:
-      enabled: 1
-      settings: {}
+      enabled: 0
+      settings:
+        CPU: AnyCPU
   userData: 
   assetBundleName: 
   assetBundleVariant: 
