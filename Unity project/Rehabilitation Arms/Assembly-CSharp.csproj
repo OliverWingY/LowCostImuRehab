@@ -67,9 +67,9 @@
     <Compile Include="Assets\Scripts\SpawnManager.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\DetectInstantiate.cs" />
+    <Compile Include="Assets\Scripts\DestroyPowerup.cs" />
     <Compile Include="Assets\Scripts\MIddleware\BycepMotion.cs" />
     <Compile Include="Assets\Scripts\MIddleware\Startup.cs" />
-    <Compile Include="Assets\Scripts\DestroyPowerup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

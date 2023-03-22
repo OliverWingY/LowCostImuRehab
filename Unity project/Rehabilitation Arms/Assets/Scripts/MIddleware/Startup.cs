@@ -20,7 +20,7 @@ public class Startup : MonoBehaviour
         Forearm = new double[4];
         Bycep = new double[4];
         ArmPosition = new UnityMonitoredVariables();
-        Middleware = new ImuDataConnector(12346, 12347, ref ArmPosition);
+        Middleware = new ImuDataConnector(12345, 12347, ref ArmPosition);
         if (Middleware != null) 
         { 
             print("successfully started up middleware");
