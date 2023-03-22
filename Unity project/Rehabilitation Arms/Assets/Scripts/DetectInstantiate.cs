@@ -13,8 +13,7 @@ public class DetectInstantiate : MonoBehaviour
     public GameObject ProjectilePrefab;
     public bool hasPowerup;
     public GameObject powerupIndicator;
-    int score;
-    public int HighScoreValue;
+    public int score;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
     public bool isGameActive;
@@ -40,11 +39,11 @@ public class DetectInstantiate : MonoBehaviour
         if (numBoxes > MAX_BOXES)
         {
             GameOver();
-            Time.timeScale = 0;
         }
     }
     public void GameOver()
     {
+        Time.timeScale = 0;
         gameOverText.gameObject.SetActive(true);
         middleware.NotifyEnd();
         isGameActive = false;
@@ -93,7 +92,7 @@ public class DetectInstantiate : MonoBehaviour
 
     void UpdateHighScoreText()
     {
-        highScoreText.text = $"HighScore: {PlayerPrefs.GetInt("HighScoreValue", 0)}";
+        highScoreText.text = $"HighScore: {PlayerPrefs.GetInt("HighScoreValue")}";
     }
 
     private void OnCollisionEnter(Collision other)
@@ -101,12 +100,12 @@ public class DetectInstantiate : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             GameOver();
-            Time.timeScale = 0;
+            
         }
     }
     IEnumerator PowerupCountdwonRoutine()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(10);
         hasPowerup = false;
         powerupIndicator.gameObject.SetActive(false);
     }
