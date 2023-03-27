@@ -7,8 +7,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Numerics;
-
+using UnityEngine;
 namespace Middleware
 {    
     public class ImuDataConnector : IDisposable
@@ -56,7 +55,6 @@ namespace Middleware
                 {
 
                     //the code will stop here and wait for the next imu packet 
-
                     var recieveTask = Task.Run(() => imuServer.Receive(ref imuRemoteEP));
                     if (recieveTask.Wait(TimeSpan.FromSeconds(1)))
                         imuData = recieveTask.Result;
@@ -80,7 +78,7 @@ namespace Middleware
                         backData = Encoding.UTF8.GetBytes(backString);
                     }
 
-                    Task.Run(() => sendSock.SendTo(backData, sendEP));
+                    sendSock.SendTo(backData, sendEP);
                 }
             });
         }
@@ -89,8 +87,7 @@ namespace Middleware
         private static double[] DecodeImuData(string stringData)
         {
             //assuming 3 imus, angle + acceleration data
-            var doubleArray = new double[21];
-            
+            var doubleArray = new double[21];            
             try
             {
                 var stringArray = stringData.Split(',');
@@ -107,46 +104,11 @@ namespace Middleware
         }     
         
         private void UpdateUnity(double[] imuData)
-        {  
-            var imu2angle = ToEulerAngles(new Quaternion((float)imuData[5], (float)imuData[6], (float)imuData[7], (float)imuData[4]));
-            var imu3angle = ToEulerAngles(new Quaternion((float)imuData[9], (float)imuData[10], (float)imuData[11], (float)imuData[8]));
-            var forearmAngle = imu2angle;
-            var bycepAngle = imu3angle;
-            unityArm.ForearmAngles = new double[] { forearmAngle.X, forearmAngle.Y, forearmAngle.Z};
-            unityArm.BycepAngles = new double[] { bycepAngle.X, bycepAngle.Y, bycepAngle.Z };
-        }
-
-        private static Vector3 ToEulerAngles(Quaternion q)
         {
-            Vector3 angles = new Vector3();
+            unityArm.ForearmAngles = new Quaternion((float)imuData[5], (float)imuData[6], (float)imuData[7], (float)imuData[4]);
+            unityArm.BycepAngles = new Quaternion((float)imuData[9], (float)imuData[10], (float)imuData[11], (float)imuData[8]);
 
-            // roll / x
-            double sinr_cosp = 2 * (q.W * q.X + q.Y * q.Z);
-            double cosr_cosp = 1 - 2 * (q.X * q.X + q.Y * q.Y);
-            angles.X = (float)Math.Atan2(sinr_cosp, cosr_cosp);
-
-            // pitch / y
-            double sinp = 2 * (q.W * q.Y - q.Z * q.X);
-            if (Math.Abs(sinp) >= 1)
-            {
-                if(sinp >=0)
-                    angles.Y = (float)(Math.PI / 2);
-                else
-                    angles.Y = (float)(-Math.PI / 2);
-            }
-            else
-            {
-                angles.Y = (float)Math.Asin(sinp);
-            }
-
-            // yaw / z
-            double siny_cosp = 2 * (q.W * q.Z + q.X * q.Y);
-            double cosy_cosp = 1 - 2 * (q.Y * q.Y + q.Z * q.Z);
-            angles.Z = (float)Math.Atan2(siny_cosp, cosy_cosp);
-
-            return angles;
         }
-
         public void NotifyStart()
         {
             gameRunning = true;

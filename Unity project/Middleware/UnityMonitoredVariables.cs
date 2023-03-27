@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,20 +10,20 @@ namespace Middleware
     public class UnityMonitoredVariables
     {
         //xyzw
-        public double[] ForearmAngles 
+        public Quaternion ForearmAngles 
         { 
             get { return forearmAngles; } 
             internal set { forearmAngles = value; } 
         }
-        private double[] forearmAngles = new double[3];
+        private Quaternion forearmAngles = new Quaternion();
 
         //xyzw
-        public double[] BycepAngles
+        public Quaternion BycepAngles
         {
             get { return bycepAngles; }
             internal set { bycepAngles = value; }
         }
-        private double[] bycepAngles = new double[3];
+        private Quaternion bycepAngles = new Quaternion();
 
     }
 }

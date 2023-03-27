@@ -20,11 +20,10 @@ public class BycepMotion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {        
-        var transform = GetComponent<Transform>();
-        transform.eulerAngles = new Vector3((float)startup.Bycep[1] * toDegrees, -(float)startup.Bycep[2] * toDegrees, -(float)startup.Bycep[0] * toDegrees);
+        var transform = GetComponent<Transform>();        
+        transform.eulerAngles = new Vector3((float)startup.Bycep.y * toDegrees, -(float)startup.Bycep.z * toDegrees, -(float)startup.Bycep.x * toDegrees);
         transform.Rotate(new Vector3(xOffset, yOffset, zOffset));
         transform.Rotate(0, startup.yRotation, 0, Space.World);
-        //var eul = GetComponent<Transform>().eulerAngles;
-        //print($"{this.gameObject.name} Euler angles:  {eul.x}, {eul.y}, {eul.z}");
+
     }
 }
