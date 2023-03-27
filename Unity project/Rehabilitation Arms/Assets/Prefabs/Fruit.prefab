@@ -157,4 +157,3 @@ MonoBehaviour:
   audioClip: {fileID: 8300000, guid: 113ee460fadc340e4957a7404a9fbb27, type: 3}
   particleSystemPrefab: {fileID: 6164018630865982680, guid: dc37dff4c3f121a4da928b7d94fb82c1,
     type: 3}
-  colTag: Player

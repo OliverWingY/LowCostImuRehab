@@ -80,7 +80,7 @@ namespace Middleware
                         backData = Encoding.UTF8.GetBytes(backString);
                     }
 
-                    sendSock.SendTo(backData, sendEP);
+                    Task.Run(() => sendSock.SendTo(backData, sendEP));
                 }
             });
         }

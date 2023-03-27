@@ -29,7 +29,7 @@ public class DetectInstantiate : MonoBehaviour
         middleware = GameObject.Find("Ground").GetComponent<Startup>().Middleware;
         middleware.NotifyStart();
         print("Detection is alive");
-        UpdateHighScoreText();
+        //UpdateHighScoreText();
     }
 
     // Update is called once per frame
@@ -43,6 +43,7 @@ public class DetectInstantiate : MonoBehaviour
     }
     public void GameOver()
     {
+        //CheckHighScore();
         Time.timeScale = 0;
         gameOverText.gameObject.SetActive(true);
         middleware.NotifyEnd();
@@ -82,18 +83,18 @@ public class DetectInstantiate : MonoBehaviour
                 GameOver();
             }
         }
-    void CheckHighScore()
-    {
-        if (score > PlayerPrefs.GetInt("HighScoreValue", 0))
-        {
-            PlayerPrefs.SetInt("HighScoreValue", score);
-        }
-    }
+    //void CheckHighScore()
+    //{
+    //    if (score > PlayerPrefs.GetInt("HighScoreValue", 0))
+    //    {
+    //        PlayerPrefs.SetInt("HighScoreValue", score);
+    //    }
+    //}
 
-    void UpdateHighScoreText()
-    {
-        highScoreText.text = $"HighScore: {PlayerPrefs.GetInt("HighScoreValue")}";
-    }
+    //void UpdateHighScoreText()
+    //{
+    //    highScoreText.text = $"HighScore: {PlayerPrefs.GetInt("HighScoreValue")}";
+    //}
 
     private void OnCollisionEnter(Collision other)
     {
