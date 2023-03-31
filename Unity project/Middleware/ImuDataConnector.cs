@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -23,12 +20,12 @@ namespace Middleware
         private static bool eventOccurred = false;
         //variables for sending data to unity
 
-        private UnityMonitoredVariables unityArm;
+        private IUnityVariables unityArm;
 
         //variables for creating metadata
        // private static MatlabRunner matlabRunner;
 
-        public ImuDataConnector(int imuRecievePortNumber, int imuSendPortNumber, ref UnityMonitoredVariables UnityMonitoredVariables) 
+        public ImuDataConnector(int imuRecievePortNumber, int imuSendPortNumber, IUnityVariables UnityMonitoredVariables) 
         {
             unityArm = UnityMonitoredVariables;
             imuServer = new UdpClient(imuRecievePortNumber);
@@ -127,7 +124,7 @@ namespace Middleware
         public void Dispose()
         {
             imuListenCancellation.Cancel();            
-            imuListen.Wait();
+            imuListen.Wait(3000);
             imuServer.Close();
             imuServer.Dispose();
         }

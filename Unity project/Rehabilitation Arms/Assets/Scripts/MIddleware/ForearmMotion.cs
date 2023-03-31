@@ -23,6 +23,5 @@ public class ForearmMotion : MonoBehaviour
         transform.eulerAngles = new Vector3((float)startup.Forearm.y * toDegrees, -(float)startup.Forearm.z * toDegrees, -(float)startup.Forearm.x * toDegrees);
         transform.Rotate(xOffset, yOffset, zOffset);
         transform.Rotate(0, startup.yRotation, 0, Space.World);
-        print($"Euler angles: {startup.Forearm[0]*toDegrees}, {startup.Forearm[1] * toDegrees}, {startup.Forearm[2] * toDegrees}");
     }
 }

@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Middleware
 {
-    public class UnityMonitoredVariables
+    public class UnityMonitoredVariables : IUnityVariables
     {
         //xyzw
         public Quaternion ForearmAngles 
         { 
             get { return forearmAngles; } 
-            internal set { forearmAngles = value; } 
+            set { forearmAngles = value; } 
         }
         private Quaternion forearmAngles = new Quaternion();
 
@@ -21,7 +21,7 @@ namespace Middleware
         public Quaternion BycepAngles
         {
             get { return bycepAngles; }
-            internal set { bycepAngles = value; }
+            set { bycepAngles = value; }
         }
         private Quaternion bycepAngles = new Quaternion();
 

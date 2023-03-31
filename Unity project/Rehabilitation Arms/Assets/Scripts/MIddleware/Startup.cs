@@ -14,6 +14,8 @@ public class Startup : MonoBehaviour
     public float yRotation =0;
     public KeyCode Clockwise;
     public KeyCode AntiClockwise;
+    public KeyCode Calibrate;
+    private int calibrateTimer;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +23,7 @@ public class Startup : MonoBehaviour
         Forearm = new Vector3();
         Bycep = new Vector3();
         ArmPosition = new UnityMonitoredVariables();
-        Middleware = new ImuDataConnector(12345, 12347, ref ArmPosition);
+        Middleware = new ImuDataConnector(12345, 12347, ArmPosition);
         if (Middleware != null) 
         { 
             print("successfully started up middleware");
@@ -32,10 +34,16 @@ public class Startup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (calibrateTimer > 0) calibrateTimer--;
         Bycep = ToEulerAngles(ArmPosition.BycepAngles);
         Forearm = ToEulerAngles(ArmPosition.ForearmAngles);
         if (Input.GetKey(Clockwise)) yRotation += 0.1f;
         if (Input.GetKey(AntiClockwise)) yRotation -= 0.1f;
+        if (Input.GetKey(Calibrate) && calibrateTimer == 0)
+        {
+            Callibrate();
+            calibrateTimer = 200;
+        };
     }
 
     public bool ClassifyMotion(string expectedMotion)
@@ -50,6 +58,23 @@ public class Startup : MonoBehaviour
         print("Closed middleware");
     }
 
+    private void Callibrate()
+    {
+        print("callibrating");
+        var palm = GameObject.Find("Palm.R").GetComponent<Transform>();  
+        var bicep = GameObject.Find("Bicep.R").GetComponent<Transform>();
+        var vector = palm.position - bicep.position;
+        var x = vector.x;
+        print($"bicep: {bicep.position.x},{bicep.position.z}");
+        print($"palm: {palm.position.x},{palm.position.z}");
+        print($"vector: {vector.x}, {vector.z}");
+        var z = vector.z;
+        if (x >= 0 && z >= 0) yRotation = (float)(-Math.Atan(x / z) * 180 / Math.PI);
+        else if (x >= 0 && z < 0) yRotation = (float)( - 90 - (Math.Atan(Math.Abs(z / x)) * 180 / Math.PI));
+        else if (x < 0 && z < 0) yRotation = (float)(90 + (Math.Atan(Math.Abs(z / x)) * 180 / Math.PI));
+        else if (x < 0 && z >= 0) yRotation = (float)(- Math.Atan(x / z) * 180 / Math.PI);
+        print($"new yrotation: {yRotation}");
+    }
     private static Vector3 ToEulerAngles(Quaternion q)
     {
         Vector3 angles = new Vector3();

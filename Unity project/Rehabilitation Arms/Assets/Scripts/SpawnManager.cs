@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour
     private float spawnRangeX = 4;
     private float spawnPosZ = 5;
     private float startDelay = 2;
-    private float spawnInterval = 3;
+    private float spawnInterval = 1;
     public GameObject playersObject;
 
 
