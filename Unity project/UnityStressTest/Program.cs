@@ -40,7 +40,7 @@ namespace UnityStressTest
 
             //run test
             
-            List<int> testFrequencies = new List<int> { 50, 70, 80, 90, 100, 120, 140, 160, 180, 200, 250, 300, 400, 500, 750, 1000, 5000, 10000, 50000, 100000 };
+            List<int> testFrequencies = new List<int> { 50, 70, 90, 100, 120, 160, 200, 250, 500, 750, 1000, 2000, 3000, 4000, 5000, 6000, 7500, 10000, 12500, 17500, 25000, 32500, 50000, 100000 };
             
             Console.WriteLine("Begin?");
             Console.ReadLine();
