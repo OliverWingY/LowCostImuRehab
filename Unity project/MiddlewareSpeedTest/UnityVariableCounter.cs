@@ -10,8 +10,9 @@ namespace MiddlewareSpeedTest
 {
     internal class UnityVariableCounter : IUnityVariables
     {
+        
         internal int accessCounter = 0;
-        public Quaternion ForearmAngles 
+        public double[] ForearmAngles 
         { get => angles;
             set 
             {
@@ -20,8 +21,9 @@ namespace MiddlewareSpeedTest
             } 
         }
 
-        private Quaternion angles = new Quaternion();
-        public Quaternion BycepAngles { get => angles; set { } }
+        private double[] angles = new double[4];
+        public double[] BycepAngles { get => angles; set { } }
 
+        public int Status { get; set; }
     }
 }

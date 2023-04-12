@@ -29,9 +29,10 @@ namespace Middleware
         {
             unityArm = UnityMonitoredVariables;
             imuServer = new UdpClient(imuRecievePortNumber);
+            unityArm.Status = -1;
             imuListen = StartListening(imuRecievePortNumber, imuListenCancellation.Token);
             sendEP = new IPEndPoint(IPAddress.Parse("127.0.0.1"), imuSendPortNumber);
-            sendSock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            sendSock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);            
         }
 
         public string ClassifyMotion()
@@ -43,7 +44,7 @@ namespace Middleware
         {
             return Task.Factory.StartNew(() =>
             {
-                int i = 0;
+                unityArm.Status = 1;
                 var imuRemoteEP = new IPEndPoint(IPAddress.Any, portNumber);
                 byte[] imuData;
                 byte[] backData;
@@ -76,34 +77,37 @@ namespace Middleware
                     }
 
                     sendSock.SendTo(backData, sendEP);
+                    unityArm.Status = 0;
                 }
             });
         }
 
         //functions for dealing with Imu data
-        private static double[] DecodeImuData(string stringData)
+        private double[] DecodeImuData(string stringData)
         {
             //assuming 3 imus, angle + acceleration data
             var doubleArray = new double[21];            
             try
             {
                 var stringArray = stringData.Split(',');
-                for (int i = 0; i < 21; i++)
+                for (int i = 0; i < 12; i++)
                 {
                     doubleArray[i] = Convert.ToDouble(stringArray[i]);
                 }
             }
             catch
             {
+                unityArm.Status = -3;
                 doubleArray = new double[21];
             }
             return doubleArray;
         }     
         
         private void UpdateUnity(double[] imuData)
-        {
-            unityArm.ForearmAngles = new Quaternion((float)imuData[5], (float)imuData[6], (float)imuData[7], (float)imuData[4]);
-            unityArm.BycepAngles = new Quaternion((float)imuData[9], (float)imuData[10], (float)imuData[11], (float)imuData[8]);
+        {            
+            unityArm.ForearmAngles = new double[] { imuData[5], imuData[6], imuData[7], imuData[4] };
+            unityArm.BycepAngles = new double[] { imuData[9], imuData[10], imuData[11], imuData[8] };
+            if (unityArm.Status != -3) unityArm.Status = 2;
 
         }
         public void NotifyStart()
@@ -123,6 +127,7 @@ namespace Middleware
 
         public void Dispose()
         {
+            unityArm.Status = -2;
             imuListenCancellation.Cancel();            
             imuListen.Wait(3000);
             imuServer.Close();

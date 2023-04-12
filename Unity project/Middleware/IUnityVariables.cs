@@ -5,8 +5,11 @@ namespace Middleware
 {
     public interface IUnityVariables
     {
-        Quaternion ForearmAngles { get; set; }
+        int Status { get; set; }
 
-        Quaternion BycepAngles { get; set; }  
+        //xyzw
+        double[] ForearmAngles { get; set; }
+
+        double[] BycepAngles { get; set; }  
     }
 }

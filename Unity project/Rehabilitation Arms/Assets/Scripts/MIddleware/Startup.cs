@@ -34,6 +34,7 @@ public class Startup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print($"Middleware Status: {ArmPosition.Status}");
         if (calibrateTimer > 0) calibrateTimer--;
         Bycep = ToEulerAngles(ArmPosition.BycepAngles);
         Forearm = ToEulerAngles(ArmPosition.ForearmAngles);
@@ -75,8 +76,9 @@ public class Startup : MonoBehaviour
         else if (x < 0 && z >= 0) yRotation = (float)(- Math.Atan(x / z) * 180 / Math.PI);
         print($"new yrotation: {yRotation}");
     }
-    private static Vector3 ToEulerAngles(Quaternion q)
+    private static Vector3 ToEulerAngles(double[] quaternion)
     {
+        var q = new Quaternion((float)quaternion[0], (float)quaternion[1], (float)quaternion[2], (float)quaternion[3]);
         Vector3 angles = new Vector3();
 
         // roll / x

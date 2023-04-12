@@ -10,20 +10,10 @@ namespace Middleware
     public class UnityMonitoredVariables : IUnityVariables
     {
         //xyzw
-        public Quaternion ForearmAngles 
-        { 
-            get { return forearmAngles; } 
-            set { forearmAngles = value; } 
-        }
-        private Quaternion forearmAngles = new Quaternion();
+        public int Status { get; set; } = 0;
+        public double[] ForearmAngles { get; set; }
 
         //xyzw
-        public Quaternion BycepAngles
-        {
-            get { return bycepAngles; }
-            set { bycepAngles = value; }
-        }
-        private Quaternion bycepAngles = new Quaternion();
-
+        public double[] BycepAngles { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace UDPTesting
 {
     internal class Program
     {
-        private static int portNumber = 12347;
+        private static int portNumber = 12345;
         private static CancellationTokenSource cancellation = new CancellationTokenSource();
         private static UdpClient udpServer;
         static void Main(string[] args)
