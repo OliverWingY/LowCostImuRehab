@@ -20,6 +20,22 @@ public class ForearmMotion : MonoBehaviour
     void Update()
     {
         var transform = GetComponent<Transform>();
+
+        // Seriously take care before attempting to make this make sense or change it.
+        //             ______________                               
+        //       ,===:'.,            `-._                           
+        //            `:.`---.__         `-._                       
+        //              `:.     `--.         `.                     
+        //                \.        `.         `.                   
+        //        (,,(,    \.         `.   ____,-`.,                
+        //     (,'     `/   \.   ,--.___`.'                         
+        // ,  ,'  ,--.  `,   \.;'         `                         
+        //  `{D, {    \  :    \;                                    
+        //    V,,'    /  /    //                                    
+        //    j;;    /  ,' ,-//.    ,---.      ,                    
+        //    \;'   /  ,' /  _  \  /  _  \   ,'/                    
+        //          \   `'  / \  `'  / \  `.' /                     
+        //           `.___,'   `.__,'   `.__,'  
         transform.eulerAngles = new Vector3((float)startup.Forearm.y * toDegrees, -(float)startup.Forearm.z * toDegrees, -(float)startup.Forearm.x * toDegrees);
         transform.Rotate(xOffset, yOffset, zOffset);
         transform.Rotate(0, startup.yRotation, 0, Space.World);

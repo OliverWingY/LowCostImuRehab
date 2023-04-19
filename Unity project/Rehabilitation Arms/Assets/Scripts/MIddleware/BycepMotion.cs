@@ -20,7 +20,24 @@ public class BycepMotion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {        
-        var transform = GetComponent<Transform>();        
+        var transform = GetComponent<Transform>();
+
+        // Beware the dragons
+        //             ______________                               
+        //       ,===:'.,            `-._                           
+        //            `:.`---.__         `-._                       
+        //              `:.     `--.         `.                     
+        //                \.        `.         `.                   
+        //        (,,(,    \.         `.   ____,-`.,                
+        //     (,'     `/   \.   ,--.___`.'                         
+        // ,  ,'  ,--.  `,   \.;'         `                         
+        //  `{D, {    \  :    \;                                    
+        //    V,,'    /  /    //                                    
+        //    j;;    /  ,' ,-//.    ,---.      ,                    
+        //    \;'   /  ,' /  _  \  /  _  \   ,'/                    
+        //          \   `'  / \  `'  / \  `.' /                     
+        //           `.___,'   `.__,'   `.__,'  
+
         transform.eulerAngles = new Vector3((float)startup.Bycep.y * toDegrees, -(float)startup.Bycep.z * toDegrees, -(float)startup.Bycep.x * toDegrees);
         transform.Rotate(new Vector3(xOffset, yOffset, zOffset));
         transform.Rotate(0, startup.yRotation, 0, Space.World);

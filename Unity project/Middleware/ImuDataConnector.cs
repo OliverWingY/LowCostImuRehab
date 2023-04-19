@@ -42,6 +42,8 @@ namespace Middleware
 
         private Task StartListening(int portNumber, CancellationToken cancellationToken)
         {
+            unityArm.BycepAngles = new double[4] { 0, 0, 0, 0 };
+            unityArm.ForearmAngles = new double[4] { 0, 0, 0, 0 };
             return Task.Factory.StartNew(() =>
             {
                 unityArm.Status = 1;
