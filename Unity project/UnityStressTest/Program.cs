@@ -8,6 +8,7 @@ namespace UnityStressTest
 {
     internal class Program
     {
+        private static int recordingLength = 1000;
         private static int listenPortNumber = 12347;
         private static int sendPortNumber = 12345;
         private static UdpClient listenServer;
@@ -25,12 +26,12 @@ namespace UnityStressTest
 
             //get data to send
             var reader = new StreamReader("D:\\Repos\\LowCostImuRehab\\Unity project\\UnityStressTest\\StressTestData2.txt");
-            string[] stringToSend = new string[1592];
-            for (int i = 0; i < 1592; i++)
+            string[] stringToSend = new string[recordingLength];
+            for (int i = 0; i < recordingLength; i++)
             {
                 stringToSend[i] = reader.ReadLine();
             }
-            byte[][] dataToSend = new byte[1592][];
+            byte[][] dataToSend = new byte[recordingLength][];
             int j = 0;
             foreach(string str in stringToSend) 
             {
@@ -40,7 +41,7 @@ namespace UnityStressTest
 
             //run test
             
-            List<int> testFrequencies = new List<int> { 50, 70, 90, 100, 120, 160, 200, 250, 500, 750, 1000, 2000, 3000, 4000, 5000, 6000, 7500, 10000, 12500, 17500, 25000, 32500, 50000, 100000 };
+            List<int> testFrequencies = new List<int> { 100,  500,  1000,  5000, 10000, 12500, 17500, 25000, 32500, 50000, 100000 };
             
             Console.WriteLine("Begin?");
             Console.ReadLine();
@@ -77,7 +78,7 @@ namespace UnityStressTest
 
             }
 
-            File.WriteAllText(@"D:\Repos\LowCostImuRehab\Unity project\UnityStressTest\Results.txt", resultsStringBuilder.ToString());
+            //File.WriteAllText(@"D:\Repos\LowCostImuRehab\Unity project\UnityStressTest\Results.txt", resultsStringBuilder.ToString());
 
 
         }

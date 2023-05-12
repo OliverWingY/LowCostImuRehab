@@ -2672,6 +2672,11 @@ MonoBehaviour:
   - {fileID: 4150592907870785031, guid: c972c383f7f479e4aaf9e71f225e2884, type: 3}
   - {fileID: 8941152957101701628, guid: eb73a8307838a2b4fa1875311b9a77b2, type: 3}
   playersObject: {fileID: 330585543}
+  DemoMode: 1
+  ModeSwitch: 109
+  Banana: 256
+  Crate: 257
+  Powerup: 258
 --- !u!4 &1440804172
 Transform:
   m_ObjectHideFlags: 0
