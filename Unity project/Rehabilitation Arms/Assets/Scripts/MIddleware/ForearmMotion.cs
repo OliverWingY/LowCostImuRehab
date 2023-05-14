@@ -21,6 +21,13 @@ public class ForearmMotion : MonoBehaviour
     {
         var transform = GetComponent<Transform>();
 
+        // this code is the equivalent of this: q_g = (q_imu*M)⦻q_0
+        // where q_g are the game quaternions, q_imu is the imu reading, M is a 4d matrix that rearranges the axes, q_0 is the quaternions that describe
+        // the calibration position in the game frame of reference (see Oliver Wing Young's final individual report for details), and ⦻ represents quaternion multiplication 
+        //Its implemented like this because 
+        //1: Getting this working happened 2 months before I understood how it worked
+        //2: I cant be bothered to write the code necessary to make q_imu*M possible in one line.
+        
         // Seriously take care before attempting to make this make sense or change it.
         //             ______________                               
         //       ,===:'.,            `-._                           
