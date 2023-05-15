@@ -4387,6 +4387,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectilePrefab: {fileID: 7085525732467674229, guid: 9b7f198f8e54e4f4cac9f1b9c0f468c8,
     type: 3}
+  rockTimerMax: 200
   hasPowerup: 0
   powerupIndicator: {fileID: 1079718694865927673, guid: 4290890b34b2c2a4587436c8480475c4,
     type: 3}

@@ -11,6 +11,8 @@ public class DetectInstantiate : MonoBehaviour
     private Vector3 offset = new Vector3(0, -0.5f, 1);
     private ImuDataConnector middleware;
     public GameObject ProjectilePrefab;
+    public int rockTimerMax = 200;
+    private int rockTimer = 0;
     public bool hasPowerup;
     public GameObject powerupIndicator;
     public int score;
@@ -25,6 +27,7 @@ public class DetectInstantiate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rockTimer = 0;
         isGameActive = true;
         middleware = GameObject.Find("Ground").GetComponent<Startup>().Middleware;
         middleware.NotifyStart();
@@ -35,6 +38,7 @@ public class DetectInstantiate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        rockTimer--;
         int numBoxes = GameObject.FindGameObjectsWithTag("Enemy").Length;
         if (numBoxes > MAX_BOXES)
         {
@@ -66,9 +70,9 @@ public class DetectInstantiate : MonoBehaviour
                 UpdateScore(1);
             }
         }
-        else if (other.gameObject.CompareTag("Spawn Rock"))
+        else if (other.gameObject.CompareTag("Spawn Rock") && rockTimer <= 0)
             {
-
+                rockTimer = rockTimerMax;
                 Instantiate(ProjectilePrefab, transform.position + offset, ProjectilePrefab.transform.rotation);
             }
             else if (other.gameObject.CompareTag("Powerup"))
